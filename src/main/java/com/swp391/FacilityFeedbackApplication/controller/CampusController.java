@@ -14,7 +14,7 @@ import java.util.List;
 public class CampusController {
     @Autowired
     private CampusService campusService;
-    @GetMapping("campus")
+    @GetMapping("/campus")
     public List<Campus> getAllCampus(){
         return campusService.getCampus();
     }
