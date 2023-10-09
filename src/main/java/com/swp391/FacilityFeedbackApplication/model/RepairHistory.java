@@ -2,14 +2,16 @@ package com.swp391.FacilityFeedbackApplication.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "RepairHistory")
 public class RepairHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "Time")
-    private int time;
+    @Column(name = "RepairDate")
+    private Date repairDate;
     @Column(name = "Status")
     private boolean status;
     @Column(name = "FacilityFeedbackId")
@@ -17,9 +19,9 @@ public class RepairHistory {
     @Column(name = "StaffId")
     private int staffId;
 
-    public RepairHistory(int id, int time, boolean status, int facilityFeedbackId, int staffId) {
+    public RepairHistory(int id, Date repairDate, boolean status, int facilityFeedbackId, int staffId) {
         this.id = id;
-        this.time = time;
+        this.repairDate = repairDate;
         this.status = status;
         this.facilityFeedbackId = facilityFeedbackId;
         this.staffId = staffId;
@@ -36,12 +38,12 @@ public class RepairHistory {
         this.id = id;
     }
 
-    public int getTime() {
-        return time;
+    public Date getRepairDate() {
+        return repairDate;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setRepairDate(Date repairDate) {
+        this.repairDate = repairDate;
     }
 
     public boolean isStatus() {

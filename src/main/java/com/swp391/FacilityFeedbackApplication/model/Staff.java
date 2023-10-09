@@ -18,17 +18,28 @@ public class Staff {
     private  boolean isManager;
     @Column(name = "CampusId")
     private int campusId;
+    @Column(name = "Status")
+    private boolean status;
 
     public Staff() {
     }
 
-    public Staff(int id, String fullName, String loginName, String password, boolean isManager, int campusId) {
+    public Staff(int id, String fullName, String loginName, String password, boolean isManager, int campusId, boolean status) {
         this.id = id;
         this.fullName = fullName;
         this.loginName = loginName;
         this.password = password;
         this.isManager = isManager;
         this.campusId = campusId;
+        this.status = status;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getId() {
