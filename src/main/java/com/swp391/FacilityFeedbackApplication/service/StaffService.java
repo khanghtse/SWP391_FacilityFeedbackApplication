@@ -17,6 +17,10 @@ public class StaffService {
         return staffRepository.findAll();
     }
 
+    public List<Staff> getStaffByCampusId(int campusId) {
+        return staffRepository.findByCampusId(campusId);
+    }
+
 
     public boolean isExisted (int id){
         return staffRepository.existsById(id);

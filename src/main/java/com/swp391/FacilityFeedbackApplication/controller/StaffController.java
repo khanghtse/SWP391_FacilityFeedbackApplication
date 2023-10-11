@@ -18,6 +18,10 @@ public class StaffController {
     public List<Staff> getAllStaff(){
         return staffService.getAllStaff();
     }
+    @GetMapping("/getAllByCampusId/{campusId}")
+    public List<Staff> getAllByCampusId(@PathVariable int campusId){
+        return staffService.getStaffByCampusId(campusId);
+    }
     @GetMapping("/find/{id}")
     public Optional<Staff> findStaffById (@PathVariable int id){
         return staffService.findStaff(id);
