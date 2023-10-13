@@ -6,59 +6,108 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StaffService {
     @Autowired
     private StaffRepository staffRepository;
+//    @Autowired
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public List<Staff> getAllStaff(){
         return staffRepository.findAll();
     }
 
     public List<Staff> getStaffByCampusId(int campusId) {
-        return staffRepository.findByCampusId(campusId);
-    }
-
-
-    public boolean isExisted (int id){
-        return staffRepository.existsById(id);
-    }
-    public Optional<Staff> findStaff(int id){
-        return staffRepository.findById(id);
-    }
-
-    public Staff addStaff(Staff staff){
-        if (staff != null){
-            return staffRepository.save(staff);
-        }else{
+        try{
+            return staffRepository.findByCampusId(campusId);
+        }catch (Exception e){
+            e.printStackTrace();
             return null;
         }
     }
 
-    public Staff editStaff(int id, Staff staff){
-        if (staff != null){
-            Staff st = staffRepository.getReferenceById(id);
-            if (st != null){
-                st.setFullName(st.getFullName());
-                st.setLoginName(st.getLoginName());
-                st.setPassword(st.getPassword());
-                st.setManager(false);
-            }
+    public Staff searchStaffById(int id){
+        try{
+            return staffRepository.findStaffById(id);
+        } catch (Exception e){
+            e.printStackTrace();
         }
         return null;
     }
 
-    public boolean deleteStaff(int id){
-        if (id >= 1){
-            Staff staff = staffRepository.getReferenceById(id);
-            if (staff != null){
-                staffRepository.delete(staff);
-            }
+
+    public boolean addStaff(Staff staff){
+        if (staff != null){
+            staffRepository.save(staff);
             return true;
+        }else{
+            return false;
         }
-        return false;
+    }
+
+    public boolean editStaff(Staff staff, int id){
+        try{
+            return staffRepository.updateStaffById(staff.getFullName(), staff.getLoginName(),
+                    staff.getPassword(), staff.isManager(), staff.isStatus(), staff.getCampusId(), id) == 1;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+//    public boolean deleteStaff(int id){
+//        if (id >= 1){
+//            Staff staff = staffRepository.getReferenceById(id);
+//            if (staff != null){
+//                staffRepository.delete(staff);
+//            }
+//            return true;
+//        }
+//        return false;
+//    }
+
+    public boolean deleteStaffByStatus(int id){
+        try{
+            return staffRepository.updateStaffStatus(id) == 1;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+//    public Staff checkLogin(String loginName, String password){
+//        return staffRepository.findStaffByLoginNameAndPassword(loginName, password);
+//    }
+    public Staff login(String loginName, String password){
+        try {
+            if (password.equals(staffRepository.findStaffByLoginName(loginName).getPassword())){
+                return staffRepository.findStaffByLoginName(loginName);
+            }else{
+                return null;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Staff searchStaffByFullName(String fullName){
+        try{
+           return staffRepository.findStaffByFullNameLike(fullName);
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public boolean isLoginNameDupplicated(String loginName){
+        try{
+            return (staffRepository.findStaffByLoginName(loginName) != null);
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
 
