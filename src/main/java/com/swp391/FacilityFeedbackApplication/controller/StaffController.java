@@ -57,14 +57,6 @@ public class StaffController {
     public ResponseEntity<?> deleteStaff(@PathVariable("id") int id){
         return ResponseEntity.status(HttpStatus.OK).body(staffService.deleteStaffByStatus(id));
     }
-//    @DeleteMapping("/delete/")
-//    public ResponseEntity<?> deleteStaff(@RequestParam("id") int id){
-//        return ResponseEntity.status(HttpStatus.OK).body(staffService.deleteStaff(id));
-//    }
-    //@GetMapping("/getStaffByCampus/{campusId}")
-    //public List<Staff> getStaffByCampusId(@PathVariable int campusId){
-    //    return staffService.getAllStaffByCampusId();
-    //}
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody loginDTO loginDTO){

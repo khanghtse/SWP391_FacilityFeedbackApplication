@@ -42,7 +42,8 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
     @Modifying
     @Transactional
     Integer updateStaffById(@Param("FullName") String fullName, @Param("LoginName") String loginName, @Param("Password") String password,
-                            @Param("IsManager") boolean isManager, @Param("Status") boolean status, @Param("CampusId") int campusId, @Param("Id") int id);
+                            @Param("IsManager") boolean isManager, @Param("Status") boolean status,
+                            @Param("CampusId") int campusId, @Param("Id") int id);
 
 
 }
