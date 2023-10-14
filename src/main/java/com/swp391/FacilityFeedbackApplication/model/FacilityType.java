@@ -10,13 +10,16 @@ public class FacilityType {
     private int id;
     @Column(name = "FacilityTypeName")
     private String name;
+    @Column(name = "RoomTypeId")
+    private int roomTypeId;
 
     public FacilityType() {
     }
 
-    public FacilityType(int id, String name) {
+    public FacilityType(int id, String name, int roomTypeId) {
         this.id = id;
         this.name = name;
+        this.roomTypeId = roomTypeId;
     }
 
     public int getId() {
@@ -33,5 +36,13 @@ public class FacilityType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getRoomTypeId() {
+        return roomTypeId;
+    }
+
+    public void setRoomTypeId(int roomTypeId) {
+        this.roomTypeId = roomTypeId;
     }
 }

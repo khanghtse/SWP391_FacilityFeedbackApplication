@@ -14,15 +14,18 @@ public class Facility {
     private double quantity;
     @Column(name = "FacilityTypeId")
     private int facilityTypeId;
+    @Column(name = "RoomTypeId")
+    private int roomTypeId;
 
     public Facility() {
     }
 
-    public Facility(int id, String name, double quantity, int facilityTypeId) {
+    public Facility(int id, String name, double quantity, int facilityTypeId, int roomTypeId) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.facilityTypeId = facilityTypeId;
+        this.roomTypeId = roomTypeId;
     }
 
     public int getId() {
@@ -55,5 +58,13 @@ public class Facility {
 
     public void setFacilityTypeId(int facilityTypeId) {
         this.facilityTypeId = facilityTypeId;
+    }
+
+    public int getRoomTypeId() {
+        return roomTypeId;
+    }
+
+    public void setRoomTypeId(int roomTypeId) {
+        this.roomTypeId = roomTypeId;
     }
 }
