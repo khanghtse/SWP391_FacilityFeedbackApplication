@@ -81,11 +81,12 @@ public class StaffService {
 //    }
     public Staff login(String loginName, String password){
         try {
-            if (password.equals(staffRepository.findStaffByLoginName(loginName).getPassword())){
-                return staffRepository.findStaffByLoginName(loginName);
-            }else{
-                return null;
-            }
+//            if (password.equals(staffRepository.findStaffByLoginName(loginName).getPassword())){
+//                return staffRepository.findStaffByLoginName(loginName);
+//            }else{
+//                return null;
+//            }
+            return staffRepository.findStaffByLoginNameAndPassword(loginName, password);
         } catch (Exception e){
             e.printStackTrace();
             return null;

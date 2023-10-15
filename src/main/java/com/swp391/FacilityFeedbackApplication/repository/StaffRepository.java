@@ -25,6 +25,8 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
 //    @Transactional
 //    Staff findStaffByLoginNameAndPassword(@Param("loginName") String loginName,@Param("password") String password);
 
+    Staff findStaffByLoginNameAndPassword(String loginName, String password);
+
     Staff findStaffByLoginName(String loginName);
 
     List<Staff> findStaffByFullNameLike(String fullName);
