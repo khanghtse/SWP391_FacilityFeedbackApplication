@@ -92,9 +92,9 @@ public class StaffService {
         }
     }
 
-    public Staff searchStaffByFullName(String fullName){
+    public List<Staff> searchStaffByFullName(String fullName){
         try{
-           return staffRepository.findStaffByFullNameLike(fullName);
+           return staffRepository.findStaffByFullNameLike("%"+fullName+"%");
         } catch (Exception e){
             e.printStackTrace();
             return null;

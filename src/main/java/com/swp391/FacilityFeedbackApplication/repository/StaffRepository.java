@@ -27,7 +27,7 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
 
     Staff findStaffByLoginName(String loginName);
 
-    Staff findStaffByFullNameLike(String fullName);
+    List<Staff> findStaffByFullNameLike(String fullName);
 
     Staff findStaffById(int id);
     @Query(value = "UPDATE [dbo].[Staff] SET [Status] = 'false' WHERE [Id] = :Id", nativeQuery = true)

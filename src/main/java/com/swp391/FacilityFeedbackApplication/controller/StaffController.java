@@ -73,7 +73,7 @@ public class StaffController {
 
     @GetMapping("/search/{fullName}")
     public ResponseEntity<?> findStaffByFullName(@PathVariable("fullName") String fullName){
-        Staff st =staffService.searchStaffByFullName(fullName);
+        List<Staff> st =staffService.searchStaffByFullName(fullName);
         if (st != null){
             return ResponseEntity.status(HttpStatus.OK).body(st);
         }
