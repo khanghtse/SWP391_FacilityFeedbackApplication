@@ -34,6 +34,9 @@ public class StaffController {
         if(staffService.isLoginNameDupplicated(staff.getLoginName())){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("LoginName is dupplicated !");
         }else{
+            if (staff.isStatus() == Boolean.parseBoolean(null)){
+                staff.setStatus(true);
+            }
             if (staffService.addStaff(staff)){
                 return ResponseEntity.status(HttpStatus.OK).body(true);
             }
