@@ -2,13 +2,11 @@ package com.swp391.FacilityFeedbackApplication.controller;
 
 import com.swp391.FacilityFeedbackApplication.model.FacilityFeedback;
 import com.swp391.FacilityFeedbackApplication.service.FacilityFeedbackService;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -22,14 +20,14 @@ public class FacilityFeedbackController {
 
     @PostMapping("/create")
     public ResponseEntity<String> createFeedback(
-            @RequestParam("description") String description,
-            @RequestParam("image") MultipartFile image,
-            @RequestParam("createDate") Date createDate,
-            @RequestParam("campusId") int campusId,
-            @RequestParam("floorId") int floorId,
-            @RequestParam("facilityProblemId") int facilityProblemId,
-            @RequestParam("roomId") int roomId,
-            @RequestParam("facilityId") int facilityId
+            @RequestBody String description,
+            @RequestBody MultipartFile image,
+            @RequestBody Date createDate,
+            @RequestBody int campusId,
+            @RequestBody int floorId,
+            @RequestBody int facilityProblemId,
+            @RequestBody int roomId,
+            @RequestBody int facilityId
     ){
         try{
             FacilityFeedback facilityFeedback = new FacilityFeedback();
@@ -41,8 +39,8 @@ public class FacilityFeedbackController {
             facilityFeedback.setFacilityProblemId(facilityProblemId);
             facilityFeedback.setRoomId(roomId);
             facilityFeedback.setFacilityId(facilityId);
-            FacilityFeedback saveFeeback = facilityFeedbackService.createFeedback(facilityFeedback);
-            if(saveFeeback != null){
+            FacilityFeedback saveFeedback = facilityFeedbackService.createFeedback(facilityFeedback);
+            if(saveFeedback != null){
                 return new ResponseEntity<>("Feedback create successfully", HttpStatus.CREATED);
             }else {
                 return new ResponseEntity<>("Failed to create feedback", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -51,5 +49,9 @@ public class FacilityFeedbackController {
             return new ResponseEntity<>("Failed to process image", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+    @GetMapping("/getAll")
+    public ResponseEntity<?> getAllFeedback(){
+        return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.getAllFeedback());
     }
 }
