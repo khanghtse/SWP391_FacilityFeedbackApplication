@@ -19,6 +19,13 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
     @Transactional
     List<Staff> findByCampusId(int campusId);
 
+    @Query(value = "SELECT s.[Id], s.[FullName],s.[LoginName],s.[Password],s.[IsManager],s.[Status],c.CampusName \n" +
+            "from [dbo].[Staff] s INNER JOIN [dbo].[Campus] c ON s.[CampusId] = c.[Id]\n" +
+            "WHERE s.[Status] = 1", nativeQuery = true)
+    @Modifying
+    @Transactional
+    List<Object[]> getAllStaff();
+
 //    @Query(value = "SELECT [Id], [FullName], [LoginName], [Password], [IsManager], [Status], [CampusId]\n" +
 //            "FROM [dbo].[Staff] WHERE [LoginName] = :loginName AND [Password] = :password", nativeQuery = true)
 //    @Modifying

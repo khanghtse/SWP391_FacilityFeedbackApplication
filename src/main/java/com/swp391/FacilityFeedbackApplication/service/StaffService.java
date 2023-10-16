@@ -1,11 +1,14 @@
 package com.swp391.FacilityFeedbackApplication.service;
 
+import com.swp391.FacilityFeedbackApplication.DTO.StaffDTO;
 import com.swp391.FacilityFeedbackApplication.model.Staff;
 import com.swp391.FacilityFeedbackApplication.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class StaffService {
@@ -14,8 +17,20 @@ public class StaffService {
 //    @Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public List<Staff> getAllStaff(){
-        return staffRepository.findAll();
+//    public List<Staff> getAllStaff(){
+//        return staffRepository.getAllStaff();
+//    }
+
+    public List<StaffDTO> getAllStaff(){
+        List<Object[]> results = staffRepository.getAllStaff();
+        List<StaffDTO> staffDtoList = new ArrayList<>();
+
+        for(Object[] result: results){
+            StaffDTO staffDTO = new StaffDTO((int) result[0], (String) result[1],(String) result[2],
+                    (String) result[3], (boolean) result[4], (boolean) result[5], (String) result[6]);
+            staffDtoList.add(staffDTO);
+        }
+        return staffDtoList;
     }
 
     public List<Staff> getStaffByCampusId(int campusId) {

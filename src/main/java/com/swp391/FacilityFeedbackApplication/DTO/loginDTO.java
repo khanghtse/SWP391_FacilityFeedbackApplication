@@ -1,4 +1,4 @@
-package com.swp391.FacilityFeedbackApplication.DTO.Staff;
+package com.swp391.FacilityFeedbackApplication.DTO;
 
 
 import lombok.Data;

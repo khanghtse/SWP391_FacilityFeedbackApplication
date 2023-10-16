@@ -16,6 +16,9 @@ public class Staff {
     private  String password;
     @Column(name = "IsManager")
     private  boolean isManager;
+//    @ManyToOne
+//    @JoinColumn(name = "CampusId")
+//    private Campus campus;
     @Column(name = "CampusId")
     private int campusId;
     @Column(name = "Status")
@@ -23,6 +26,16 @@ public class Staff {
 
     public Staff() {
     }
+
+//    public Staff(int id, String fullName, String loginName, String password, boolean isManager, Campus campus, boolean status) {
+//        this.id = id;
+//        this.fullName = fullName;
+//        this.loginName = loginName;
+//        this.password = password;
+//        this.isManager = isManager;
+//        this.campus = campus;
+//        this.status = status;
+//    }
 
     public Staff(int id, String fullName, String loginName, String password, boolean isManager, int campusId, boolean status) {
         this.id = id;
@@ -33,6 +46,15 @@ public class Staff {
         this.campusId = campusId;
         this.status = status;
     }
+
+
+//    public Campus getCampus() {
+//        return campus;
+//    }
+//
+//    public void setCampus(Campus campus) {
+//        this.campus = campus;
+//    }
 
     public boolean isStatus() {
         return status;

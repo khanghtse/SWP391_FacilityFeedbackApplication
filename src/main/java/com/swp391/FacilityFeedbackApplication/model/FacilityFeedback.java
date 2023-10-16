@@ -12,32 +12,37 @@ public class FacilityFeedback {
     private int id;
     @Column(name = "Description")
     private String desc;
+    @Column(name = "Image")
+    private byte[] image;
+    @Column(name = "CreateDate")
+    private Date createDate = new Date();
+    @Column(name = "CampusId")
+    private int campusId;
+    @Column(name = "FloorId")
+    private int floorId;
     @Column(name = "FacilityProblemId")
     private int facilityProblemId;
     @Column(name = "RoomId")
     private int roomId;
     @Column(name = "FacilityId")
     private int facilityId;
-    @Column(name = "CreateDate")
-    private Date createDate;
-    @Column(name = "CampusId")
-    private int campusId;
-    @Column(name = "FloorId")
-    private int floorId;
 
 
     public FacilityFeedback() {
     }
 
-    public FacilityFeedback(int id, String desc, int facilityProblemId, int roomId, int facilityId, Date createDate, int campusId, int floorId) {
+    public FacilityFeedback(int id, String desc, byte[] image, Date createDate,
+                            int campusId, int floorId, int facilityProblemId, int roomId,
+                            int facilityId) {
         this.id = id;
         this.desc = desc;
-        this.facilityProblemId = facilityProblemId;
-        this.roomId = roomId;
-        this.facilityId = facilityId;
+        this.image = image;
         this.createDate = createDate;
         this.campusId = campusId;
         this.floorId = floorId;
+        this.facilityProblemId = facilityProblemId;
+        this.roomId = roomId;
+        this.facilityId = facilityId;
     }
 
     public int getId() {
@@ -102,5 +107,13 @@ public class FacilityFeedback {
 
     public void setFloorId(int floorId) {
         this.floorId = floorId;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }
