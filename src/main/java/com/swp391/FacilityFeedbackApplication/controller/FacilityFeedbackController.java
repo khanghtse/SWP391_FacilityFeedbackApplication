@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Date;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/feedback")
 public class FacilityFeedbackController {
     @Autowired
