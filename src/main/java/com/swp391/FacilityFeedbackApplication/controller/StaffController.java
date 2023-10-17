@@ -65,7 +65,7 @@ public class StaffController {
         String loginName = loginDTO.getLoginName();
         String password = loginDTO.getPassword();
         Staff staff = staffService.login(loginName, password);
-        if (staff != null) {
+        if (staff != null && staff.isStatus() == true) {
             return ResponseEntity.status(HttpStatus.OK).body(staff);
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invalid loginName or password");

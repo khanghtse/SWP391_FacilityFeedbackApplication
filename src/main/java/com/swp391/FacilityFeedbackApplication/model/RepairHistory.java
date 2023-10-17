@@ -11,7 +11,7 @@ public class RepairHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "RepairDate")
-    private Date repairDate;
+    private Date repairDate = new Date();
     @Column(name = "Status")
     private boolean status;
     @Column(name = "FacilityFeedbackId")
