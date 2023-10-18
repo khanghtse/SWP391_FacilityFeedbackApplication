@@ -12,12 +12,12 @@ import java.util.List;
 
 @Repository
 public interface StaffRepository extends JpaRepository<Staff, Integer> {
-    @Query( value = "SELECT [Id],[FullName],[LoginName],[Password],[IsManager],[Status],[CampusId]\n" +
-            "FROM [dbo].[Staff]\n" +
-            "WHERE [CampusId] = :campusId AND [IsManager] = 'false' AND [Status] = 'true' ", nativeQuery = true)
+    @Query( value = "SELECT s.[Id], s.[FullName],s.[LoginName],s.[Password],s.[IsManager],s.[Status],c.CampusName\n" +
+            "from [dbo].[Staff] s INNER JOIN [dbo].[Campus] c ON s.[CampusId] = c.[Id]\n" +
+            "WHERE s.[Status] = 1 AND [CampusId] = :campusId ", nativeQuery = true)
     @Modifying
     @Transactional
-    List<Staff> findByCampusId(int campusId);
+    List<Object[]> findByCampusId(int campusId);
 
     @Query(value = "SELECT s.[Id], s.[FullName],s.[LoginName],s.[Password],s.[IsManager],s.[Status],c.CampusName \n" +
             "from [dbo].[Staff] s INNER JOIN [dbo].[Campus] c ON s.[CampusId] = c.[Id]\n" +

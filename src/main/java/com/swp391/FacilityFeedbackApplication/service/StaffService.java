@@ -33,13 +33,16 @@ public class StaffService {
         return staffDtoList;
     }
 
-    public List<Staff> getStaffByCampusId(int campusId) {
-        try{
-            return staffRepository.findByCampusId(campusId);
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
+    public List<StaffDTO> getStaffByCampusId(int campusId) {
+        List<Object[]> results = staffRepository.findByCampusId(campusId);
+        List<StaffDTO> staffDTOList = new ArrayList<>();
+
+        for (Object[] result: results){
+            StaffDTO staffDTO = new StaffDTO((int) result[0], (String) result[1],(String) result[2],
+                    (String) result[3], (boolean) result[4], (boolean) result[5], (String) result[6]);
+            staffDTOList.add(staffDTO);
         }
+        return staffDTOList;
     }
 
     public Staff searchStaffById(int id){
