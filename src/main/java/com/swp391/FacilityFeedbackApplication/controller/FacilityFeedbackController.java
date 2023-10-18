@@ -22,7 +22,7 @@ public class FacilityFeedbackController {
     @PostMapping("/create")
     public ResponseEntity<String> createFeedback(
             @RequestBody String description,
-            @RequestBody MultipartFile image,
+            @RequestParam("image") MultipartFile image,
             @RequestBody Date createDate,
             @RequestBody int campusId,
             @RequestBody int floorId,
