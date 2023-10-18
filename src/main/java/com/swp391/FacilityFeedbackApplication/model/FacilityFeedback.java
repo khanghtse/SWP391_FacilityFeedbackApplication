@@ -15,7 +15,7 @@ public class FacilityFeedback {
     @Column(name = "Image")
     private byte[] image;
     @Column(name = "CreateDate")
-    private Date createDate = new Date();
+    private Date createDate;
     @Column(name = "CampusId")
     private int campusId;
     @Column(name = "FloorId")

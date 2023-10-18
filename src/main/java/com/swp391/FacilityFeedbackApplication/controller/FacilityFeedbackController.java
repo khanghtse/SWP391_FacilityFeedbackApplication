@@ -23,7 +23,6 @@ public class FacilityFeedbackController {
     public ResponseEntity<String> createFeedback(
             @RequestBody String description,
             @RequestParam("image") MultipartFile image,
-            @RequestBody Date createDate,
             @RequestBody int campusId,
             @RequestBody int floorId,
             @RequestBody int facilityProblemId,
@@ -31,6 +30,7 @@ public class FacilityFeedbackController {
             @RequestBody int facilityId
     ){
         try{
+            Date createDate = new Date();
             FacilityFeedback facilityFeedback = new FacilityFeedback();
             facilityFeedback.setDesc(description);
             facilityFeedback.setImage(image.getBytes());
