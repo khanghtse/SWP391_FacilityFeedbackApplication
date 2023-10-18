@@ -45,14 +45,10 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
     Integer updateStaffStatus(@Param("Id") int id);
 
 
-    @Query(value = "UPDATE [dbo].[Staff] SET [FullName] = :FullName, [LoginName] = :LoginName," +
-            " [Password] = :Password, [IsManager] = :IsManager, [Status] = :Status,[CampusId] = :CampusId\n" +
-            "WHERE [Id] = :Id", nativeQuery = true)
+    @Query(value = "UPDATE [dbo].[Staff] SET [Password] = :Password, [CampusId] = :CampusId, [Status] = 'true' WHERE [Id] = :Id", nativeQuery = true)
     @Modifying
     @Transactional
-    Integer updateStaffById(@Param("FullName") String fullName, @Param("LoginName") String loginName, @Param("Password") String password,
-                            @Param("IsManager") boolean isManager, @Param("Status") boolean status,
-                            @Param("CampusId") int campusId, @Param("Id") int id);
+    Integer updateStaffById(@Param("Password") String password, @Param("CampusId") int campusId, @Param("Id") int id);
 
 
 }

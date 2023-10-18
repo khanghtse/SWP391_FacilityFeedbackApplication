@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RestController
@@ -24,6 +23,7 @@ public class FacilityFeedbackController {
     public ResponseEntity<String> createFeedback(
             @RequestBody String description,
             @RequestParam("image") MultipartFile image,
+            @RequestBody Date createDate,
             @RequestBody int campusId,
             @RequestBody int floorId,
             @RequestBody int facilityProblemId,
@@ -31,9 +31,6 @@ public class FacilityFeedbackController {
             @RequestBody int facilityId
     ){
         try{
-            Date createDate = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            String formatedCreateDate = sdf.format(createDate);
             FacilityFeedback facilityFeedback = new FacilityFeedback();
             facilityFeedback.setDesc(description);
             facilityFeedback.setImage(image.getBytes());

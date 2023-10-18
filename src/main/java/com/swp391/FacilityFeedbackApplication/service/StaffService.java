@@ -66,8 +66,7 @@ public class StaffService {
 
     public boolean editStaff(Staff staff, int id){
         try{
-            return staffRepository.updateStaffById(staff.getFullName(), staff.getLoginName(),
-                    staff.getPassword(), staff.isManager(), staff.isStatus(), staff.getCampusId(), id) == 1;
+            return staffRepository.updateStaffById(staff.getPassword(), staff.getCampusId(), id) == 1;
         }catch (Exception e){
             e.printStackTrace();
             return false;
