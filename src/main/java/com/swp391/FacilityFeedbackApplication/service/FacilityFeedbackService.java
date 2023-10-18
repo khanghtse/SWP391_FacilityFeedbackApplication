@@ -17,8 +17,8 @@ public class FacilityFeedbackService {
     @Autowired
     private FacilityFeedbackRepository facilityFeedbackRepository;
 
-    public List<FacilityFeedbackDTO> getAllFeedback(){
-        List<Object[]> results = facilityFeedbackRepository.getAllFeedback();
+    public List<FacilityFeedbackDTO> getAllFeedback(int campusId){
+        List<Object[]> results = facilityFeedbackRepository.getAllFeedback(campusId);
         List<FacilityFeedbackDTO> feedbackDTOList = new ArrayList<>();
 
         for (Object[] result: results){
