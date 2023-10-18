@@ -14,7 +14,7 @@ import java.util.List;
 public interface StaffRepository extends JpaRepository<Staff, Integer> {
     @Query( value = "SELECT [Id],[FullName],[LoginName],[Password],[IsManager],[Status],[CampusId]\n" +
             "FROM [dbo].[Staff]\n" +
-            "WHERE [CampusId] = :campusId AND [IsManager] = 'false' ", nativeQuery = true)
+            "WHERE [CampusId] = :campusId AND [IsManager] = 'false' AND [Status] = 'true' ", nativeQuery = true)
     @Modifying
     @Transactional
     List<Staff> findByCampusId(int campusId);
