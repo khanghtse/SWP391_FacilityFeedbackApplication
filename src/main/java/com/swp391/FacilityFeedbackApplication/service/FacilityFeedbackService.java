@@ -34,7 +34,7 @@ public class FacilityFeedbackService {
         return facilityFeedbackRepository.save(facilityFeedback);
     }
     public List<FacilityFeedbackDTO> getAllFeedbackById(int id){
-        List<Object[]> results = facilityFeedbackRepository.getAllFeedback(id);
+        List<Object[]> results = facilityFeedbackRepository.getAllFeedbackById(id);
         List<FacilityFeedbackDTO> feedbackDTOList = new ArrayList<>();
 
         for (Object[] result: results){
