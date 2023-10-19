@@ -23,7 +23,7 @@ public class FacilityFeedbackService {
 
         for (Object[] result: results){
             FacilityFeedbackDTO facilityFeedbackDTO = new FacilityFeedbackDTO((int) result[0], (String) result[1],
-                    (byte[]) result[2], (Date) result[3], (String) result[4], (String) result[5], (String) result[6],
+                    (byte[]) result[2], (String) result[3], (String) result[4], (String) result[5], (String) result[6],
                     (String) result[7],(String) result[8]);
             feedbackDTOList.add(facilityFeedbackDTO);
         }
@@ -39,7 +39,7 @@ public class FacilityFeedbackService {
 
         for (Object[] result: results){
             FacilityFeedbackDTO facilityFeedbackDTO = new FacilityFeedbackDTO((int) result[0], (String) result[1],
-                    (byte[]) result[2], (Date) result[3], (String) result[4], (String) result[5], (String) result[6],
+                    (byte[]) result[2], (String) result[3], (String) result[4], (String) result[5], (String) result[6],
                     (String) result[7],(String) result[8]);
             feedbackDTOList.add(facilityFeedbackDTO);
         }
