@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RestController
@@ -32,10 +33,11 @@ public class FacilityFeedbackController {
     ){
         try{
             Date createDate = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             FacilityFeedback facilityFeedback = new FacilityFeedback();
             facilityFeedback.setDesc(description);
             facilityFeedback.setImage(image.getBytes());
-            facilityFeedback.setCreateDate(createDate);
+            facilityFeedback.setCreateDate(sdf.format(createDate));
             facilityFeedback.setCampusId(campusId);
             facilityFeedback.setFloorId(floorId);
             facilityFeedback.setFacilityProblemId(facilityProblemId);

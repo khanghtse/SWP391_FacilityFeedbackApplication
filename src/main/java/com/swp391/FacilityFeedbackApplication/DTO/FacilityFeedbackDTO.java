@@ -9,7 +9,7 @@ public class FacilityFeedbackDTO {
     private String description;
     private byte[] image;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date createDate;
+    private String createDate;
     private String campusName;
     private String floorName;
     private String facilityProblemName;
@@ -20,7 +20,7 @@ public class FacilityFeedbackDTO {
     }
 
     public FacilityFeedbackDTO(int id, String description, byte[] image,
-                               Date createDate, String campusName, String floorName,
+                               String createDate, String campusName, String floorName,
                                String facilityProblemName, String roomName, String facilityName) {
         this.id = id;
         this.description = description;
@@ -57,11 +57,11 @@ public class FacilityFeedbackDTO {
         this.image = image;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

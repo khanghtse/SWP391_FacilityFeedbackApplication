@@ -17,7 +17,7 @@ public class FacilityFeedback {
     private byte[] image;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "CreateDate")
-    private Date createDate;
+    private String createDate;
     @Column(name = "CampusId")
     private int campusId;
     @Column(name = "FloorId")
@@ -33,7 +33,7 @@ public class FacilityFeedback {
     public FacilityFeedback() {
     }
 
-    public FacilityFeedback(int id, String desc, byte[] image, Date createDate,
+    public FacilityFeedback(int id, String desc, byte[] image, String createDate,
                             int campusId, int floorId, int facilityProblemId, int roomId,
                             int facilityId) {
         this.id = id;
@@ -87,11 +87,11 @@ public class FacilityFeedback {
         this.facilityId = facilityId;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
