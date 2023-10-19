@@ -19,7 +19,7 @@ import java.util.List;
 public class FacilityTypeController {
     @Autowired
     private FacilityTypeService facilityTypeService;
-    @GetMapping("/facilitytype")
+    @GetMapping("/facilityType")
     public List<FacilityType> getAllFacilityType(){
         return facilityTypeService.getFacilityType();
     }

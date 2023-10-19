@@ -56,4 +56,8 @@ public class FacilityFeedbackController {
     public ResponseEntity<?> getAllFeedback(@PathVariable int campusId){
         return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.getAllFeedback(campusId));
     }
+    @GetMapping("/getAllById/{Id}")
+    public ResponseEntity<?> getAllFeedbackById(@PathVariable int Id){
+        return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.getAllFeedbackById(Id));
+    }
 }
