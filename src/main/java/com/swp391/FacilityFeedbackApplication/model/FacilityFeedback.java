@@ -1,6 +1,7 @@
 package com.swp391.FacilityFeedbackApplication.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -14,6 +15,7 @@ public class FacilityFeedback {
     private String desc;
     @Column(name = "Image")
     private byte[] image;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "CreateDate")
     private Date createDate;
     @Column(name = "CampusId")

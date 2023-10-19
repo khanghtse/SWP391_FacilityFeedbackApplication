@@ -1,11 +1,14 @@
 package com.swp391.FacilityFeedbackApplication.DTO;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class FacilityFeedbackDTO {
     private int id;
     private String description;
     private byte[] image;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date createDate;
     private String campusName;
     private String floorName;
