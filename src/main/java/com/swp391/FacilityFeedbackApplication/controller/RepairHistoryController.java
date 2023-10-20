@@ -20,7 +20,8 @@ public class RepairHistoryController {
     private RepairHistoryService repairHistoryService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> addRepairHistory(@RequestParam("image") MultipartFile image,
+    public ResponseEntity<?> addRepairHistory(@RequestBody boolean status,
+                                              @RequestParam("image") MultipartFile image,
                                               @RequestBody String description,
                                               @RequestBody int facilityFeedbackId,
                                               @RequestBody int staffId){
@@ -29,7 +30,7 @@ public class RepairHistoryController {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             RepairHistory repairHistory = new RepairHistory();
             repairHistory.setRepairDate(sdf.format(repairDate));
-            repairHistory.setStatus(false);
+            repairHistory.setStatus(status);
             repairHistory.setImage(image.getBytes());
             repairHistory.setDescription(description);
             repairHistory.setFacilityFeedbackId(facilityFeedbackId);
