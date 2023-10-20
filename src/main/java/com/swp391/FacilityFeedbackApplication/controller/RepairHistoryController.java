@@ -4,6 +4,7 @@ import com.swp391.FacilityFeedbackApplication.DTO.RepairHistoryDTO;
 import com.swp391.FacilityFeedbackApplication.model.RepairHistory;
 import com.swp391.FacilityFeedbackApplication.service.RepairHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
