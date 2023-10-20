@@ -21,17 +21,21 @@ public class RepairHistoryController {
     private RepairHistoryService repairHistoryService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> addRepairHistory(@RequestBody RepairHistoryDTO repairHistoryDTO){
+    public ResponseEntity<?> addRepairHistory(@RequestBody boolean status,
+                                              @RequestParam("image") MultipartFile image,
+                                              @RequestBody String description,
+                                              @RequestBody int facilityFeedbackId,
+                                              @RequestBody int staffId){
         try{
             Date repairDate = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             RepairHistory repairHistory = new RepairHistory();
             repairHistory.setRepairDate(sdf.format(repairDate));
-            repairHistory.setStatus(repairHistoryDTO.isStatus());
-            repairHistory.setImage(repairHistoryDTO.getImage().getBytes());
-            repairHistory.setDescription(repairHistoryDTO.getDescription());
-            repairHistory.setFacilityFeedbackId(repairHistoryDTO.getFacilityFeedbackId());
-            repairHistory.setStaffId(repairHistoryDTO.getStaffId());
+            repairHistory.setStatus(status);
+            repairHistory.setImage(image.getBytes());
+            repairHistory.setDescription(description);
+            repairHistory.setFacilityFeedbackId(facilityFeedbackId);
+            repairHistory.setStaffId(staffId);
             RepairHistory saveRepairhistory = repairHistoryService.create(repairHistory);
             if (saveRepairhistory != null){
                 return new ResponseEntity<>("Feedback create successfully", HttpStatus.CREATED);
