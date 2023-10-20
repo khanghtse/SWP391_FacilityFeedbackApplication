@@ -11,23 +11,29 @@ public class RepairHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "RepairDate")
-    private Date repairDate = new Date();
+    private String repairDate;
     @Column(name = "Status")
     private boolean status;
+    @Column(name = "Image")
+    private byte[] image;
+    @Column(name = "Description")
+    private String description;
     @Column(name = "FacilityFeedbackId")
     private int facilityFeedbackId;
     @Column(name = "StaffId")
     private int staffId;
 
-    public RepairHistory(int id, Date repairDate, boolean status, int facilityFeedbackId, int staffId) {
+    public RepairHistory() {
+    }
+
+    public RepairHistory(int id, String repairDate, boolean status, byte[] image, String description, int facilityFeedbackId, int staffId) {
         this.id = id;
         this.repairDate = repairDate;
         this.status = status;
+        this.image = image;
+        this.description = description;
         this.facilityFeedbackId = facilityFeedbackId;
         this.staffId = staffId;
-    }
-
-    public RepairHistory() {
     }
 
     public int getId() {
@@ -38,11 +44,11 @@ public class RepairHistory {
         this.id = id;
     }
 
-    public Date getRepairDate() {
+    public String getRepairDate() {
         return repairDate;
     }
 
-    public void setRepairDate(Date repairDate) {
+    public void setRepairDate(String repairDate) {
         this.repairDate = repairDate;
     }
 
@@ -52,6 +58,22 @@ public class RepairHistory {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getFacilityFeedbackId() {

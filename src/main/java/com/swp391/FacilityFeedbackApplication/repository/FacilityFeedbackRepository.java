@@ -18,7 +18,7 @@ public interface FacilityFeedbackRepository extends JpaRepository<FacilityFeedba
             "INNER JOIN FacilityProblem FP ON f.FacilityProblemId = FP.Id\n" +
             "INNER JOIN Room R ON f.RoomId = R.Id\n" +
             "INNER JOIN Facility F2 ON f.FacilityId = F2.Id\n" +
-            "WHERE f.[CampusId] = :campusId", nativeQuery = true)
+            "WHERE f.[CampusId] = :campusId ORDER BY f.Createdate DESC", nativeQuery = true)
     @Modifying
     @Transactional
     List<Object[]> getAllFeedback(int campusId);

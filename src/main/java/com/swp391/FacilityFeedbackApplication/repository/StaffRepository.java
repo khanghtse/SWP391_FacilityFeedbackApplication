@@ -25,14 +25,11 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
     @Modifying
     @Transactional
     List<Object[]> getAllStaff();
+    @Query(value = "SELECT [Id], [FullName], [LoginName], [Password], [IsManager], [Status], [CampusId] FROM [dbo].[Staff]\n" +
+            "WHERE [LoginName] COLLATE Latin1_General_BIN = :loginName AND [Password] COLLATE Latin1_General_BIN = :password", nativeQuery = true)
+    Staff findStaffByLoginNameAndPassword(@Param("loginName") String loginName,@Param("password") String password);
 
-//    @Query(value = "SELECT [Id], [FullName], [LoginName], [Password], [IsManager], [Status], [CampusId]\n" +
-//            "FROM [dbo].[Staff] WHERE [LoginName] = :loginName AND [Password] = :password", nativeQuery = true)
-//    @Modifying
-//    @Transactional
-//    Staff findStaffByLoginNameAndPassword(@Param("loginName") String loginName,@Param("password") String password);
-
-    Staff findStaffByLoginNameAndPassword(String loginName, String password);
+    //Staff findStaffByLoginNameAndPassword(String loginName, String password);
 
     Staff findStaffByLoginName(String loginName);
 
