@@ -1,5 +1,6 @@
 package com.swp391.FacilityFeedbackApplication.controller;
 
+import com.swp391.FacilityFeedbackApplication.DTO.RepairHistoryDTO;
 import com.swp391.FacilityFeedbackApplication.model.RepairHistory;
 import com.swp391.FacilityFeedbackApplication.service.RepairHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +21,17 @@ public class RepairHistoryController {
     private RepairHistoryService repairHistoryService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> addRepairHistory(@RequestBody boolean status,
-                                              @RequestParam("image") MultipartFile image,
-                                              @RequestBody String description,
-                                              @RequestBody int facilityFeedbackId,
-                                              @RequestBody int staffId){
+    public ResponseEntity<?> addRepairHistory(@RequestBody RepairHistoryDTO repairHistoryDTO){
         try{
             Date repairDate = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             RepairHistory repairHistory = new RepairHistory();
             repairHistory.setRepairDate(sdf.format(repairDate));
-            repairHistory.setStatus(status);
-            repairHistory.setImage(image.getBytes());
-            repairHistory.setDescription(description);
-            repairHistory.setFacilityFeedbackId(facilityFeedbackId);
-            repairHistory.setStaffId(staffId);
+            repairHistory.setStatus(repairHistoryDTO.isStatus());
+            repairHistory.setImage(repairHistoryDTO.getImage().getBytes());
+            repairHistory.setDescription(repairHistoryDTO.getDescription());
+            repairHistory.setFacilityFeedbackId(repairHistoryDTO.getFacilityFeedbackId());
+            repairHistory.setStaffId(repairHistoryDTO.getStaffId());
             RepairHistory saveRepairhistory = repairHistoryService.create(repairHistory);
             if (saveRepairhistory != null){
                 return new ResponseEntity<>("Feedback create successfully", HttpStatus.CREATED);
