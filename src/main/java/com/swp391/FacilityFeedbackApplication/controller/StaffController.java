@@ -29,6 +29,11 @@ public class StaffController {
     public ResponseEntity<?> findStaffById (@PathVariable int id){
         return ResponseEntity.status(HttpStatus.OK).body(staffService.searchStaffById(id));
     }
+
+    @GetMapping("/findStaff/{id}")
+    public ResponseEntity<?> searchStaffById (@PathVariable int id){
+        return ResponseEntity.status(HttpStatus.OK).body(staffService.findStaffById(id));
+    }
     @PostMapping("/add")
     public ResponseEntity<?> addStaff(@RequestBody Staff staff){
         if(staffService.isLoginNameDupplicated(staff.getLoginName())){

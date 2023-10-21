@@ -56,7 +56,7 @@ public class StaffService {
 //    }
 
     public List<StaffDTO> searchStaffById(int id) {
-        List<Object[]> results = staffRepository.findStaffById(id);
+        List<Object[]> results = staffRepository.searchStaffById(id);
         List<StaffDTO> staffDTOList = new ArrayList<>();
 
         for (Object[] result: results){
@@ -65,6 +65,15 @@ public class StaffService {
             staffDTOList.add(staffDTO);
         }
         return staffDTOList;
+    }
+
+    public Staff findStaffById(int id){
+        try {
+            return staffRepository.findStaffById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

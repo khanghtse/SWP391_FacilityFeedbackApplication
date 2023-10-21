@@ -39,7 +39,9 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
             "            WHERE s.[Status] = 1 AND s.[Id] = :id", nativeQuery = true)
     @Modifying
     @Transactional
-    List<Object[]> findStaffById(int id);
+    List<Object[]> searchStaffById(int id);
+
+    Staff findStaffById(int id);
     @Query(value = "UPDATE [dbo].[Staff] SET [Status] = 'false' WHERE [Id] = :Id", nativeQuery = true)
     @Modifying
     @Transactional
