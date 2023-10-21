@@ -45,13 +45,26 @@ public class StaffService {
         return staffDTOList;
     }
 
-    public Staff searchStaffById(int id){
-        try{
-            return staffRepository.findStaffById(id);
-        } catch (Exception e){
-            e.printStackTrace();
+//    public StaffDTO searchStaffById(int id){
+//        List<Object[]> results = staffRepository.findStaffById(id);
+//        if (!results.isEmpty()) {
+//            Object[] result = results.get(0);
+//            return new StaffDTO((int) result[0], (String) result[1], (String) result[2],
+//                    (String) result[3], (boolean) result[4], (boolean) result[5], (String) result[6]);
+//        }
+//        return null;
+//    }
+
+    public List<StaffDTO> searchStaffById(int id) {
+        List<Object[]> results = staffRepository.findStaffById(id);
+        List<StaffDTO> staffDTOList = new ArrayList<>();
+
+        for (Object[] result: results){
+            StaffDTO staffDTO = new StaffDTO((int) result[0], (String) result[1],(String) result[2],
+                    (String) result[3], (boolean) result[4], (boolean) result[5], (String) result[6]);
+            staffDTOList.add(staffDTO);
         }
-        return null;
+        return staffDTOList;
     }
 
 
