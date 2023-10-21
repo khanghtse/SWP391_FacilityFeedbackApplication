@@ -52,4 +52,9 @@ public class RepairHistoryController {
     public ResponseEntity<?> viewAllRepairHistory(){
         return ResponseEntity.status(HttpStatus.OK).body(repairHistoryService.getAllRepairHistory());
     }
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<?> findById(int id){
+        return ResponseEntity.status(HttpStatus.OK).body(repairHistoryService.findRepairHistoryById(id));
+    }
 }
