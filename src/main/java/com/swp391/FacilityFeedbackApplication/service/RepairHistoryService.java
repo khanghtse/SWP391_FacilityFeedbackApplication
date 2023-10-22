@@ -29,4 +29,8 @@ public class RepairHistoryService {
     public Optional<RepairHistory> findRepairHistoryById(int id){
         return repairHistoryRepository.findById(id);
     }
+
+    public boolean existsByFacilityFeedbackIdAndStatus(int id, boolean status){
+        return repairHistoryRepository.existsByFacilityFeedbackIdAndStatus(id, status);
+    }
 }

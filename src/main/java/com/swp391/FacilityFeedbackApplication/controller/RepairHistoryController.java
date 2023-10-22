@@ -28,6 +28,10 @@ public class RepairHistoryController {
                                               @RequestBody int facilityFeedbackId,
                                               @RequestBody int staffId){
         try{
+            boolean finishedExists = repairHistoryService.existsByFacilityFeedbackIdAndStatus(facilityFeedbackId, true);
+            if (finishedExists){
+                return new ResponseEntity<>("This feedback was already finished", HttpStatus.BAD_REQUEST);
+            }
             Date repairDate = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             RepairHistory repairHistory = new RepairHistory();

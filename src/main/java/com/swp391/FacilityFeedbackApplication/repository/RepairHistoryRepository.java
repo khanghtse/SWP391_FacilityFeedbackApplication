@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepairHistoryRepository extends JpaRepository<RepairHistory, Integer> {
+    boolean existsByFacilityFeedbackIdAndStatus(int id, boolean status);
 }
