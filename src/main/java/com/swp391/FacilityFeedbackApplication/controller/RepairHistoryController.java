@@ -50,7 +50,11 @@ public class RepairHistoryController {
             if (saveRepairhistory != null){
                 FacilityFeedback facilityFeedback = facilityFeedbackService.findById(facilityFeedbackId);
                 if (facilityFeedback != null){
-                    facilityFeedback.setStatus(true);
+                    if(!saveRepairhistory.isStatus()){
+                        facilityFeedback.setStatus(false);
+                    }else {
+                        facilityFeedback.setStatus(true);
+                    }
                     facilityFeedbackService.createFeedback(facilityFeedback);
                 }
                 return new ResponseEntity<>("Feedback create successfully", HttpStatus.CREATED);
