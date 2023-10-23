@@ -25,6 +25,7 @@ public class FacilityFeedbackController {
             @RequestBody String description,
             @RequestParam("image") MultipartFile image,
             //@RequestBody Date createDate,
+            @RequestBody boolean status,
             @RequestBody int campusId,
             @RequestBody int floorId,
             @RequestBody int facilityProblemId,
@@ -38,6 +39,7 @@ public class FacilityFeedbackController {
             facilityFeedback.setDesc(description);
             facilityFeedback.setImage(image.getBytes());
             facilityFeedback.setCreateDate(sdf.format(createDate));
+            facilityFeedback.setStatus(status);
             facilityFeedback.setCampusId(campusId);
             facilityFeedback.setFloorId(floorId);
             facilityFeedback.setFacilityProblemId(facilityProblemId);

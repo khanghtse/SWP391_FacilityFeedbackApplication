@@ -10,6 +10,7 @@ public class FacilityFeedbackDTO {
     private byte[] image;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String createDate;
+    private boolean status;
     private String campusName;
     private String floorName;
     private String facilityProblemName;
@@ -20,17 +21,26 @@ public class FacilityFeedbackDTO {
     }
 
     public FacilityFeedbackDTO(int id, String description, byte[] image,
-                               String createDate, String campusName, String floorName,
+                               String createDate, boolean status, String campusName, String floorName,
                                String facilityProblemName, String roomName, String facilityName) {
         this.id = id;
         this.description = description;
         this.image = image;
         this.createDate = createDate;
+        this.status = status;
         this.campusName = campusName;
         this.floorName = floorName;
         this.facilityProblemName = facilityProblemName;
         this.roomName = roomName;
         this.facilityName = facilityName;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getId() {

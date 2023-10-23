@@ -1,7 +1,9 @@
 package com.swp391.FacilityFeedbackApplication.controller;
 
 import com.swp391.FacilityFeedbackApplication.DTO.RepairHistoryDTO;
+import com.swp391.FacilityFeedbackApplication.model.FacilityFeedback;
 import com.swp391.FacilityFeedbackApplication.model.RepairHistory;
+import com.swp391.FacilityFeedbackApplication.service.FacilityFeedbackService;
 import com.swp391.FacilityFeedbackApplication.service.RepairHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -13,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -20,6 +23,8 @@ import java.util.Date;
 public class RepairHistoryController {
     @Autowired
     private RepairHistoryService repairHistoryService;
+    @Autowired
+    private FacilityFeedbackService facilityFeedbackService;
 
     @PostMapping("/create")
     public ResponseEntity<?> addRepairHistory(@RequestBody boolean status,
@@ -43,6 +48,11 @@ public class RepairHistoryController {
             repairHistory.setStaffId(staffId);
             RepairHistory saveRepairhistory = repairHistoryService.create(repairHistory);
             if (saveRepairhistory != null){
+                FacilityFeedback facilityFeedback = facilityFeedbackService.findById(facilityFeedbackId);
+                if (facilityFeedback != null){
+                    facilityFeedback.setStatus(true);
+                    facilityFeedbackService.createFeedback(facilityFeedback);
+                }
                 return new ResponseEntity<>("Feedback create successfully", HttpStatus.CREATED);
             }else {
                 return new ResponseEntity<>("Failed to create feedback", HttpStatus.INTERNAL_SERVER_ERROR);

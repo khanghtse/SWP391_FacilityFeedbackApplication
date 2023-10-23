@@ -18,6 +18,8 @@ public class FacilityFeedback {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "CreateDate")
     private String createDate;
+    @Column(name = "Status")
+    private boolean status;
     @Column(name = "CampusId")
     private int campusId;
     @Column(name = "FloorId")
@@ -33,18 +35,27 @@ public class FacilityFeedback {
     public FacilityFeedback() {
     }
 
-    public FacilityFeedback(int id, String desc, byte[] image, String createDate,
+    public FacilityFeedback(int id, String desc, byte[] image, String createDate, boolean status,
                             int campusId, int floorId, int facilityProblemId, int roomId,
                             int facilityId) {
         this.id = id;
         this.desc = desc;
         this.image = image;
         this.createDate = createDate;
+        this.status = status;
         this.campusId = campusId;
         this.floorId = floorId;
         this.facilityProblemId = facilityProblemId;
         this.roomId = roomId;
         this.facilityId = facilityId;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getId() {
