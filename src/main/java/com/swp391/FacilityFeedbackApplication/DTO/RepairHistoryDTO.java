@@ -3,21 +3,42 @@ package com.swp391.FacilityFeedbackApplication.DTO;
 import org.springframework.web.multipart.MultipartFile;
 
 public class RepairHistoryDTO {
+    private int id;
+    private String repairDate;
+
     private boolean status;
-    private MultipartFile image;
+    private byte[] image;
     private String description;
     private int facilityFeedbackId;
-    private int staffId;
+    private String staffName;
 
     public RepairHistoryDTO() {
     }
 
-    public RepairHistoryDTO(boolean status, MultipartFile image, String description, int facilityFeedbackId, int staffId) {
+    public RepairHistoryDTO(int id, String repairDate, boolean status, byte[] image, String description, int facilityFeedbackId, String staffName) {
+        this.id = id;
+        this.repairDate = repairDate;
         this.status = status;
         this.image = image;
         this.description = description;
         this.facilityFeedbackId = facilityFeedbackId;
-        this.staffId = staffId;
+        this.staffName=staffName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getRepairDate() {
+        return repairDate;
+    }
+
+    public void setRepairDate(String repairDate) {
+        this.repairDate = repairDate;
     }
 
     public boolean isStatus() {
@@ -28,11 +49,11 @@ public class RepairHistoryDTO {
         this.status = status;
     }
 
-    public MultipartFile getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(MultipartFile image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
@@ -52,11 +73,11 @@ public class RepairHistoryDTO {
         this.facilityFeedbackId = facilityFeedbackId;
     }
 
-    public int getStaffId() {
-        return staffId;
+    public String getStaffName() {
+        return staffName;
     }
 
-    public void setStaffId(int staffId) {
-        this.staffId = staffId;
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
     }
 }

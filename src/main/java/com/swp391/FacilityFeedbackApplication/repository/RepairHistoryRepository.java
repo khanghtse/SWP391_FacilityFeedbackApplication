@@ -12,12 +12,12 @@ import java.util.List;
 @Repository
 public interface RepairHistoryRepository extends JpaRepository<RepairHistory, Integer> {
     boolean existsByFacilityFeedbackIdAndStatus(int id, boolean status);
-    @Query(value = "SELECT rp.[Id],rp.[RepairDate],rp.[Status],rp.[Image],\n" +
-            "rp.[Description],rp.[FacilityFeedbackId],\n" +
-            "rp.[StaffId] FROM [dbo].[RepairHistory] rp\n" +
+    @Query(value = "SELECT rp.[Id], rp.[RepairDate], rp.[Status], rp.[Image], rp.[Description], rp.[FacilityFeedbackId], s.FullName AS StaffName\n" +
+            "FROM [dbo].[RepairHistory] rp\n" +
             "INNER JOIN [dbo].[FacilityFeedback] FF ON rp.FacilityFeedbackId = FF.Id\n" +
+            "INNER JOIN [dbo].[Staff] s ON rp.StaffId = s.Id\n" +
             "WHERE FF.CampusId = :campusId", nativeQuery = true)
     @Modifying
     @Transactional
-    List<RepairHistory> getAllByCampus(int campusId);
+    List<Object[]> getAllByCampus(int campusId);
 }

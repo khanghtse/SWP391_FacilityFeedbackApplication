@@ -34,7 +34,7 @@ public class RepairHistoryService {
         return repairHistoryRepository.existsByFacilityFeedbackIdAndStatus(id, status);
     }
 
-    public List<RepairHistory> viewRepairHistory(int id){
+    public List<Object[]> viewRepairHistory(int id){
         return repairHistoryRepository.getAllByCampus(id);
     }
 }
