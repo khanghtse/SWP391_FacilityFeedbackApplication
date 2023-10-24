@@ -29,9 +29,6 @@ public class RepairHistoryService {
         return repairHistoryRepository.findAll();
     }
 
-    public Optional<RepairHistory> findRepairHistoryById(int id){
-        return repairHistoryRepository.findById(id);
-    }
 
     public boolean existsByFacilityFeedbackIdAndStatus(int id, boolean status){
         return repairHistoryRepository.existsByFacilityFeedbackIdAndStatus(id, status);
@@ -39,6 +36,17 @@ public class RepairHistoryService {
 
     public List<RepairHistoryDTO> viewRepairHistory(int id){
         List<Object[]> results = repairHistoryRepository.getAllByCampus(id);
+        List<RepairHistoryDTO> repairHistoryDTOList = new ArrayList<>();
+
+        for (Object[] result: results){
+            RepairHistoryDTO repairHistoryDTO = new RepairHistoryDTO((int) result[0], (String) result[1], (boolean) result[2],
+                    (byte[]) result[3], (String) result[4], (int) result[5], (String) result [6]);
+            repairHistoryDTOList.add(repairHistoryDTO);
+        }
+        return repairHistoryDTOList;
+    }
+    public List<RepairHistoryDTO> findRepairHistoryById (int id){
+        List<Object[]> results = repairHistoryRepository.findRepairHistoryById(id);
         List<RepairHistoryDTO> repairHistoryDTOList = new ArrayList<>();
 
         for (Object[] result: results){
