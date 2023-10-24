@@ -1,10 +1,13 @@
 package com.swp391.FacilityFeedbackApplication.service;
 
+import com.swp391.FacilityFeedbackApplication.DTO.RepairHistoryDTO;
+import com.swp391.FacilityFeedbackApplication.DTO.StaffDTO;
 import com.swp391.FacilityFeedbackApplication.model.RepairHistory;
 import com.swp391.FacilityFeedbackApplication.repository.RepairHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +37,15 @@ public class RepairHistoryService {
         return repairHistoryRepository.existsByFacilityFeedbackIdAndStatus(id, status);
     }
 
-    public List<Object[]> viewRepairHistory(int id){
-        return repairHistoryRepository.getAllByCampus(id);
+    public List<RepairHistoryDTO> viewRepairHistory(int id){
+        List<Object[]> results = repairHistoryRepository.getAllByCampus(id);
+        List<RepairHistoryDTO> repairHistoryDTOList = new ArrayList<>();
+
+        for (Object[] result: results){
+            RepairHistoryDTO repairHistoryDTO = new RepairHistoryDTO((int) result[0], (String) result[1], (boolean) result[2],
+                    (byte[]) result[3], (String) result[4], (int) result[5], (String) result [6]);
+            repairHistoryDTOList.add(repairHistoryDTO);
+        }
+        return repairHistoryDTOList;
     }
 }
