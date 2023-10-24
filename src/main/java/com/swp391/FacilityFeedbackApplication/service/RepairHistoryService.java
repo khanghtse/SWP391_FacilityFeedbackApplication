@@ -33,4 +33,8 @@ public class RepairHistoryService {
     public boolean existsByFacilityFeedbackIdAndStatus(int id, boolean status){
         return repairHistoryRepository.existsByFacilityFeedbackIdAndStatus(id, status);
     }
+
+    public List<RepairHistory> viewRepairHistory(int id){
+        return repairHistoryRepository.getAllByCampus(id);
+    }
 }

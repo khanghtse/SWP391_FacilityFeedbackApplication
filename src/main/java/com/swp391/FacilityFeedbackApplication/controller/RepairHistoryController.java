@@ -75,4 +75,8 @@ public class RepairHistoryController {
     public ResponseEntity<?> findById(int id){
         return ResponseEntity.status(HttpStatus.OK).body(repairHistoryService.findRepairHistoryById(id));
     }
+    @GetMapping("/viewAll/{id}")
+    public ResponseEntity<?> viewByCampus(@PathVariable int id){
+        return ResponseEntity.status(HttpStatus.OK).body(repairHistoryService.viewRepairHistory(id));
+    }
 }
