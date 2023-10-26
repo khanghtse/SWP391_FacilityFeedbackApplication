@@ -4,9 +4,11 @@ import com.swp391.FacilityFeedbackApplication.model.FacilityFeedback;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -35,4 +37,18 @@ public interface FacilityFeedbackRepository extends JpaRepository<FacilityFeedba
     List<Object[]> getAllFeedbackById(int id);
 
     FacilityFeedback findFacilityFeedbackById(int id);
+    @Query(value = "SELECT COUNT(*) AS TotalFeedback\n" +
+            "FROM [dbo].[FacilityFeedback]\n" +
+            "WHERE createDate BETWEEN :startDate AND :endDate", nativeQuery = true)
+    Long countFeedbackInDateRange(@Param("startDate")String startDate, @Param("endDate") String endDate);
+
+    @Query(value = "SELECT COUNT(*) AS TotalFeedback\n" +
+            "FROM [dbo].[FacilityFeedback]\n" +
+            "WHERE createDate BETWEEN :startDate AND :endDate AND [Status] = 'true'", nativeQuery = true)
+    Long countFeedbackWithTrueStatus(@Param("startDate")String startDate, @Param("endDate") String endDate);
+
+    @Query(value = "SELECT COUNT(*) AS TotalFeedback\n" +
+            "FROM [dbo].[FacilityFeedback]\n" +
+            "WHERE createDate BETWEEN :startDate AND :endDate AND [Status] = 'false'", nativeQuery = true)
+    Long countFeedbackWithFalseStatus(@Param("startDate")String startDate, @Param("endDate") String endDate);
 }

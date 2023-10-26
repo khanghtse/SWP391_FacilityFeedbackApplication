@@ -64,4 +64,20 @@ public class FacilityFeedbackController {
     public ResponseEntity<?> getAllFeedbackById(@PathVariable int Id){
         return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.getAllFeedbackById(Id));
     }
+    @GetMapping("/view-report")
+    public ResponseEntity<?> countFeedbackInDateRange(@RequestParam("startDate") String startDate,
+                                                      @RequestParam("endDate") String endDate){
+        return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.countFeedbackInDateRange(startDate, endDate));
+    }
+    @GetMapping("/view-report-true")
+    public ResponseEntity<?> countFeedbackWithTrueStatus(@RequestParam("startDate") String startDate,
+                                                         @RequestParam("endDate") String endDate){
+        return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.countFeedbackWithTrueStatus(startDate, endDate));
+    }
+
+    @GetMapping("/view-report-false")
+    public ResponseEntity<?> countFeedbackWithFalseStatus(@RequestParam("startDate") String startDate,
+                                                         @RequestParam("endDate") String endDate){
+        return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.countFeedbackWithFalseStatus(startDate, endDate));
+    }
 }

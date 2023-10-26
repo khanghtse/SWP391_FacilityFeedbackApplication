@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +47,18 @@ public class FacilityFeedbackService {
 
     public FacilityFeedback findById(int id){
         return facilityFeedbackRepository.findFacilityFeedbackById(id);
+    }
+
+    public Long countFeedbackInDateRange(String startDate, String endDate){
+        return facilityFeedbackRepository.countFeedbackInDateRange(startDate, endDate);
+    }
+
+    public Long countFeedbackWithTrueStatus(String startDate, String endDate){
+        return facilityFeedbackRepository.countFeedbackWithTrueStatus(startDate, endDate);
+    }
+
+    public Long countFeedbackWithFalseStatus(String startDate, String endDate){
+        return facilityFeedbackRepository.countFeedbackWithFalseStatus(startDate, endDate);
     }
 
 
