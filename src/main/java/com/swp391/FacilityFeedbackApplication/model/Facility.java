@@ -12,6 +12,8 @@ public class Facility {
     private String name;
     @Column(name = "Quantity")
     private double quantity;
+    @Column(name = "Status")
+    private boolean status;
     @Column(name = "FacilityTypeId")
     private int facilityTypeId;
     @Column(name = "RoomTypeId")
@@ -20,12 +22,21 @@ public class Facility {
     public Facility() {
     }
 
-    public Facility(int id, String name, double quantity, int facilityTypeId, int roomTypeId) {
+    public Facility(int id, String name, double quantity, boolean status, int facilityTypeId, int roomTypeId) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
+        this.status = status;
         this.facilityTypeId = facilityTypeId;
         this.roomTypeId = roomTypeId;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getId() {

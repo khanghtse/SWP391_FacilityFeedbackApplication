@@ -10,15 +10,18 @@ public class FacilityProblem {
     private int id;
     @Column(name = "FacilityProblemName")
     private String problemName;
+    @Column(name = "Status")
+    private boolean status;
     @Column(name = "FacilityTypeId")
     private int facilityTypeId;
 
     public FacilityProblem() {
     }
 
-    public FacilityProblem(int id, String problemName, int facilityTypeId) {
+    public FacilityProblem(int id, String problemName, boolean status, int facilityTypeId) {
         this.id = id;
         this.problemName = problemName;
+        this.status = status;
         this.facilityTypeId = facilityTypeId;
     }
 
@@ -36,6 +39,14 @@ public class FacilityProblem {
 
     public void setProblemName(String problemName) {
         this.problemName = problemName;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getFacilityTypeId() {

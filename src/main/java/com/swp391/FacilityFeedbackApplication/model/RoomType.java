@@ -10,6 +10,8 @@ public class RoomType {
     private int id;
     @Column(name = "RoomTypeName")
     private String name;
+    @Column(name = "Status")
+    private boolean status;
 
     public RoomType() {
     }
@@ -33,5 +35,13 @@ public class RoomType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

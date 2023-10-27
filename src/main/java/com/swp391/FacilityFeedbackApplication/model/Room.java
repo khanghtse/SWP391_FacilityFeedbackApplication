@@ -10,19 +10,25 @@ public class Room {
     private int id;
     @Column(name = "RoomName")
     private String name;
+    @Column(name = "Status")
+    private boolean status;
     @Column(name = "RoomTypeId")
     private int roomTypeId;
     @Column(name = "FloorId")
     private int floorId;
+    @Column(name = "CampusId")
+    private int campusId;
 
     public Room() {
     }
 
-    public Room(int id, String name, int roomTypeId, int floorId) {
+    public Room(int id, String name, boolean status, int roomTypeId, int floorId, int campusId) {
         this.id = id;
         this.name = name;
+        this.status = status;
         this.roomTypeId = roomTypeId;
         this.floorId = floorId;
+        this.campusId = campusId;
     }
 
     public int getId() {
@@ -41,6 +47,14 @@ public class Room {
         this.name = name;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     public int getRoomTypeId() {
         return roomTypeId;
     }
@@ -55,5 +69,13 @@ public class Room {
 
     public void setFloorId(int floorId) {
         this.floorId = floorId;
+    }
+
+    public int getCampusId() {
+        return campusId;
+    }
+
+    public void setCampusId(int campusId) {
+        this.campusId = campusId;
     }
 }
