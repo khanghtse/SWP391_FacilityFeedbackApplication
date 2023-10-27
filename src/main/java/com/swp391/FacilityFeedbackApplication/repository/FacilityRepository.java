@@ -4,6 +4,7 @@ import com.swp391.FacilityFeedbackApplication.model.Facility;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,4 +28,8 @@ public interface FacilityRepository extends JpaRepository<Facility, Integer> {
     @Modifying
     @Transactional
     List<Object[]> getAllFacilityById(int id);
+//    @Query(value = "UPDATE [dbo].[Facility] SET [Status] = 'false' WHERE [Id] = :id", nativeQuery = true)
+//    @Modifying
+//    @Transactional
+//    Integer deleteFacilityByStatus(@Param("id") int id);
 }

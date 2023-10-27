@@ -15,4 +15,8 @@ public class FloorService {
     public List<Floor> getFloor(){
         return floorRepository.findAll();
     }
+
+    public List<Floor> findByCampusId(int id){
+        return floorRepository.findFloorByCampusId(id);
+    }
 }

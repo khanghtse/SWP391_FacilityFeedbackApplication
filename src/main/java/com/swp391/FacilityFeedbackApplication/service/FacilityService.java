@@ -36,4 +36,13 @@ import java.util.List;
             }
             return facilityDTOList;
         }
+
+//        public boolean deleteFacilityByStatus(int id){
+//            try{
+//                return facilityRepository.deleteFacilityByStatus(id) == 1;
+//            }catch (Exception e){
+//                e.printStackTrace();
+//                return false;
+//            }
+//        }
 }
