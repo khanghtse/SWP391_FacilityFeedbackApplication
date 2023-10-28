@@ -19,6 +19,10 @@ import java.util.List;
         public ResponseEntity<?> getAllFacility(){
             return ResponseEntity.status(HttpStatus.OK).body(facilityService.getFacility());
         }
+        @GetMapping("/get-all")
+        public ResponseEntity<?> viewFacility(){
+            return ResponseEntity.status(HttpStatus.OK).body(facilityService.getAllFacility());
+        }
 
 //        @DeleteMapping("/delete/{id}")
 //        public ResponseEntity<?> deleteFacility(@PathVariable int id){

@@ -25,6 +25,10 @@ import java.util.List;
             return facilityDTOList;
         }
 
+        public List<Facility> getAllFacility(){
+            return facilityRepository.findAll();
+        }
+
         public List<FacilityDTO> getFacilityById(int id){
             List<Object[]> results = facilityRepository.getAllFacilityById(id);
             List<FacilityDTO> facilityDTOList = new ArrayList<>();

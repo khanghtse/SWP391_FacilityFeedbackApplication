@@ -22,4 +22,9 @@ public class FacilityProblemController{
         return ResponseEntity.status(HttpStatus.OK).body(facilityProblemService.getAllProblem());
     }
 
+    @GetMapping("/get-all")
+    public ResponseEntity<?> viewFacilityProblem(){
+        return ResponseEntity.status(HttpStatus.OK).body(facilityProblemService.getFacilityProblem());
+    }
+
 }
