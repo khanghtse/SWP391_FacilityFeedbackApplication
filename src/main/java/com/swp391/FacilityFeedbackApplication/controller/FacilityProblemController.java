@@ -4,10 +4,7 @@ import com.swp391.FacilityFeedbackApplication.service.FacilityProblemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,33 @@ public class FacilityProblemController{
     @GetMapping("/get-all")
     public ResponseEntity<?> viewFacilityProblem(){
         return ResponseEntity.status(HttpStatus.OK).body(facilityProblemService.getFacilityProblem());
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> addProblem(@RequestBody FacilityProblem facilityProblem){
+        if (facilityProblemService.isProblemNameDuplicated(facilityProblem.getProblemName())){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Problem is duplicated!!!");
+        } else {
+            if (facilityProblem.isStatus() == Boolean.parseBoolean(null)){
+                facilityProblem.setStatus(true);
+            }
+            if (facilityProblemService.addProblem(facilityProblem)){
+                return ResponseEntity.status(HttpStatus.OK).body(true);
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Create problem failed");
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateProblem(@PathVariable int id, @RequestBody FacilityProblem facilityProblem){
+        if (facilityProblemService.findProblemById(id) == null || facilityProblem == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility problem not found");
+        }else{
+            if (facilityProblemService.editProblem(id, facilityProblem)){
+                return ResponseEntity.status(HttpStatus.OK).body("Updated successfully");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Update problem failed");
     }
 
 }

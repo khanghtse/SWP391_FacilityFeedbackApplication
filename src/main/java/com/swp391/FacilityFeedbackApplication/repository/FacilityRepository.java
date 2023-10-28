@@ -28,6 +28,18 @@ public interface FacilityRepository extends JpaRepository<Facility, Integer> {
     @Modifying
     @Transactional
     List<Object[]> getAllFacilityById(int id);
+    @Query(value = "UPDATE [dbo].[Facility] SET [FacilityName] = :facilityName, [Quantity] = :quantity, [FacilityTypeId] = :facilityTypeId\n" +
+            "WHERE [Id] = :id", nativeQuery = true)
+    @Modifying
+    @Transactional
+    Integer updateFacility(@Param("facilityName") String facilityName, @Param("quantity") double quantity,
+                           @Param("facilityTypeId") int facilityTypeId, @Param("id") int id);
+
+    Facility findFacilityById(int id);
+    @Query(value = "SELECT [Id], [FacilityName], [Quantity], [Status], [FacilityTypeId], [RoomTypeId] FROM [dbo].[Facility]\n" +
+            "WHERE [FacilityName] = :facilityName", nativeQuery = true)
+    @Transactional
+    Facility findFacilityByName(@Param("facilityName") String facilityName);
 //    @Query(value = "UPDATE [dbo].[Facility] SET [Status] = 'false' WHERE [Id] = :id", nativeQuery = true)
 //    @Modifying
 //    @Transactional

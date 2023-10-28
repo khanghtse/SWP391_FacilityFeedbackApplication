@@ -24,6 +24,33 @@ import java.util.List;
             return ResponseEntity.status(HttpStatus.OK).body(facilityService.getAllFacility());
         }
 
+        @PutMapping("/update/{id}")
+        public ResponseEntity<?> updateFacility(@PathVariable int id, @RequestBody Facility facility){
+            if (facilityService.findFacilityById(id) == null || facility == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility not found");
+            }else {
+                if (facilityService.editFacility(facility, id)){
+                    return ResponseEntity.status(HttpStatus.OK).body("Updated successfully!!");
+                }
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Update facility failed!!");
+        }
+
+        @PostMapping("/create")
+        public ResponseEntity<?> addFacility(@RequestBody Facility facility){
+            if (facilityService.isFacilityNameDuplicated(facility.getName())){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility name is duplicated !!");
+            } else {
+                if (facility.isStatus() == Boolean.parseBoolean(null)){
+                    facility.setStatus(true);
+                }
+                if (facilityService.createFacility(facility)){
+                    return ResponseEntity.status(HttpStatus.OK).body(true);
+                }
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Create facility failed!!!");
+        }
+
 //        @DeleteMapping("/delete/{id}")
 //        public ResponseEntity<?> deleteFacility(@PathVariable int id){
 //            return ResponseEntity.status(HttpStatus.OK).body(facilityService.deleteFacilityByStatus(id));

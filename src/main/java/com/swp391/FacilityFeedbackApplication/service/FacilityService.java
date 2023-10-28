@@ -41,6 +41,39 @@ import java.util.List;
             return facilityDTOList;
         }
 
+        public boolean editFacility(Facility facility, int id){
+            try{
+                return facilityRepository.updateFacility(facility.getName(), facility.getQuantity(), facility.getFacilityTypeId(), id) == 1;
+            }catch (Exception e){
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        public Facility findFacilityById(int id){
+            try{
+                return facilityRepository.findFacilityById(id);
+            }catch (Exception e){
+                e.printStackTrace();
+
+            }
+            return null;
+        }
+
+        public boolean createFacility(Facility facility){
+            facilityRepository.save(facility);
+            return true;
+        }
+
+        public boolean isFacilityNameDuplicated(String name){
+            try{
+                return (facilityRepository.findFacilityByName(name) != null);
+            }catch (Exception e){
+                e.printStackTrace();
+                return false;
+            }
+        }
+
 //        public boolean deleteFacilityByStatus(int id){
 //            try{
 //                return facilityRepository.deleteFacilityByStatus(id) == 1;

@@ -30,4 +30,37 @@ public class FacilityProblemService {
         }
         return feedbackDTOList;
     }
+
+    public boolean isProblemNameDuplicated(String name){
+        try {
+            return (facilityProblemRepository.findProblemByName(name) != null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean addProblem(FacilityProblem facilityProblem){
+        facilityProblemRepository.save(facilityProblem);
+        return true;
+    }
+
+    public boolean editProblem(int id, FacilityProblem facilityProblem){
+        try{
+            return facilityProblemRepository.updateFacilityProblem(facilityProblem.getProblemName(),
+                    facilityProblem.getFacilityTypeId(), id) == 1;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public FacilityProblem findProblemById(int id){
+        try{
+            return facilityProblemRepository.findFacilityProblemById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
