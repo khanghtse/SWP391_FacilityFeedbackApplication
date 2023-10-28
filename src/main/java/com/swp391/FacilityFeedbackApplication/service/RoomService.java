@@ -26,6 +26,9 @@ import java.util.List;
             return roomDTOList;
         }
 
+        public List<Room> getAllRoom(){
+            return roomRepository.findAll();
+        }
         public List<RoomDTO> searchRoomById(int id){
             List<Object[]> results = roomRepository.serachRoomById(id);
             List<RoomDTO> roomDTOList = new ArrayList<>();
