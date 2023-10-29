@@ -23,6 +23,10 @@ import java.util.List;
         public ResponseEntity<?> viewFacility(){
             return ResponseEntity.status(HttpStatus.OK).body(facilityService.getAllFacility());
         }
+        @GetMapping("/find/{id}")
+        public ResponseEntity<?> findFacilityById(int id){
+            return ResponseEntity.status(HttpStatus.OK).body(facilityService.findFacilityById(id));
+        }
 
         @PutMapping("/update/{id}")
         public ResponseEntity<?> updateFacility(@PathVariable int id, @RequestBody Facility facility){
