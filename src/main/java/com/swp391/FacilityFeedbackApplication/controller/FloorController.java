@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+@RequestMapping("/api/floor")
 public class FloorController {
     @Autowired
     private FloorService floorService;
-    @GetMapping("/floor")
+    @GetMapping("/view")
     public List<Floor> getAllFloor(){
         return floorService.getFloor();
     }
