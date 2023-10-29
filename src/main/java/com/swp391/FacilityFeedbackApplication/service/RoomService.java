@@ -71,7 +71,7 @@ import java.util.List;
 
         public boolean editRoom(Room room, int id){
             try{
-                return roomRepository.updateRoomById(room.getName(), room.getRoomTypeId(), id) == 1;
+                return roomRepository.updateRoomById(room.getName(), id) == 1;
             }catch (Exception e){
                 e.printStackTrace();
                 return false;

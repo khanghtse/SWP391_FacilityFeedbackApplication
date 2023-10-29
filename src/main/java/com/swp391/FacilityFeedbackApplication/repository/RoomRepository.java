@@ -41,11 +41,11 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
 //            "VALUES (:roomName, :status, :roomTypeId, :floorId, :campusId)", nativeQuery = true)
 //    Integer addRoom(@Param("roomName") String name, @Param("status") boolean status,
 //                    @Param("roomTypeId") int roomTypeId, @Param("floorId") int floorId, @Param("campusId") int campusId);
-    @Query(value = "UPDATE [dbo].[Room] SET [RoomName] = :roomName, [RoomTypeId] = :roomTypeId, [Status] = 'true'\n" +
+    @Query(value = "UPDATE [dbo].[Room] SET [RoomName] = :roomName, [Status] = 'true'\n" +
             "WHERE [Id] = :id", nativeQuery = true)
     @Modifying
     @Transactional
-    Integer updateRoomById(@Param("roomName") String roomName, @Param("roomTypeId") int roomTypeId, @Param("id") int id);
+    Integer updateRoomById(@Param("roomName") String roomName, @Param("id") int id);
 
 
 }
