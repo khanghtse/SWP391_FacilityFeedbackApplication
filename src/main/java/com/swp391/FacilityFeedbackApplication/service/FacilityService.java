@@ -43,7 +43,7 @@ import java.util.List;
 
         public boolean editFacility(Facility facility, int id){
             try{
-                return facilityRepository.updateFacility(facility.getName(), facility.getQuantity(), facility.getFacilityTypeId(), id) == 1;
+                return facilityRepository.updateFacility(facility.getName(), facility.getQuantity(), id) == 1;
             }catch (Exception e){
                 e.printStackTrace();
                 return false;
