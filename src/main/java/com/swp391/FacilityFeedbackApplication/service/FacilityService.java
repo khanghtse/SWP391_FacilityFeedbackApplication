@@ -70,8 +70,8 @@ import java.util.List;
                 return (facilityRepository.findFacilityByName(name) != null);
             }catch (Exception e){
                 e.printStackTrace();
-                return false;
             }
+            return true;
         }
 
 //        public boolean deleteFacilityByStatus(int id){

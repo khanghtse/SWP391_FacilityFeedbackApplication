@@ -12,11 +12,10 @@ import java.util.List;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Integer> {
-    @Query(value = "SELECT [Id],[RoomName],[RoomTypeId],[FloorId],[CampusId] FROM [dbo].[Room]\n" +
+    @Query(value = "SELECT [Id],[RoomName],[Status],[RoomTypeId],[FloorId],[CampusId] FROM [dbo].[Room]\n" +
             "WHERE [RoomName] = :name AND [CampusId] = :id", nativeQuery = true)
-    @Modifying
     @Transactional
-    Room findRoomByRoomNameAndCampusId(@Param("name") String name, @Param("id") int id);
+    Room findRoom(@Param("name") String name, @Param("id") int id);
     @Query(value = "UPDATE [dbo].[Room] SET [Status] = 'false' WHERE [Id] = :id", nativeQuery = true)
     @Modifying
     @Transactional

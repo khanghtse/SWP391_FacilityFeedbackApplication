@@ -22,8 +22,8 @@ public class FacilityTypeService {
             return facilityTypeRepository.findFacilityTypeByName(name) != null;
         }catch (Exception e){
             e.printStackTrace();
-            return false;
         }
+        return true;
     }
 
     public boolean createFacilityType(FacilityType facilityType){

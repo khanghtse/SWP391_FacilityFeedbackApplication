@@ -30,8 +30,8 @@ public class RoomTypeService {
             return (roomTypeRepository.findRoomTypeByName(name) != null);
         }catch (Exception e){
             e.printStackTrace();
-            return false;
         }
+        return true;
     }
 
     public boolean editRoomType(int id, RoomType roomType){

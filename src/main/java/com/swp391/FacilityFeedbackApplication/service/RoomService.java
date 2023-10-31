@@ -53,11 +53,11 @@ import java.util.List;
 
         public boolean isRoomNameDupplicated(String name, int id){
             try{
-                return (roomRepository.findRoomByRoomNameAndCampusId(name, id) != null);
+                return (roomRepository.findRoom(name, id) != null);
             }catch (Exception e){
                 e.printStackTrace();
-                return false;
             }
+            return true;
         }
 
         public boolean deleteRoom(int id){

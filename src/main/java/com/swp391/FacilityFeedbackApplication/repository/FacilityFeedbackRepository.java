@@ -1,5 +1,6 @@
 package com.swp391.FacilityFeedbackApplication.repository;
 
+import com.swp391.FacilityFeedbackApplication.DTO.FeedbackCountDTO;
 import com.swp391.FacilityFeedbackApplication.model.FacilityFeedback;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -51,4 +52,15 @@ public interface FacilityFeedbackRepository extends JpaRepository<FacilityFeedba
             "FROM [dbo].[FacilityFeedback]\n" +
             "WHERE createDate BETWEEN :startDate AND :endDate AND [Status] = 'false'", nativeQuery = true)
     Long countFeedbackWithFalseStatus(@Param("startDate")String startDate, @Param("endDate") String endDate);
+    @Query(value = "SELECT\n" +
+            "    COUNT(*) AS TotalFeedbackCount,\n" +
+            "    SUM(CASE WHEN status = 'true' THEN 1 ELSE 0 END) AS TrueStatusCount,\n" +
+            "    SUM(CASE WHEN status = 'false' THEN 1 ELSE 0 END) AS FalseStatusCount\n" +
+            "FROM\n" +
+            "    FacilityFeedback\n" +
+            "WHERE\n" +
+            "    createDate BETWEEN :startDate AND :endDate", nativeQuery = true)
+    @Modifying
+    @Transactional
+    List<Object[]> countFeedback(@Param("startDate") String startDate, @Param("endDate") String endDate);
 }

@@ -36,8 +36,8 @@ public class FacilityProblemService {
             return (facilityProblemRepository.findProblemByName(name) != null);
         }catch (Exception e){
             e.printStackTrace();
-            return false;
         }
+        return true;
     }
 
     public boolean addProblem(FacilityProblem facilityProblem){

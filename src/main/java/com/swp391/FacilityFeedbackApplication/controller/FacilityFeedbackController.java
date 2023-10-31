@@ -1,5 +1,6 @@
 package com.swp391.FacilityFeedbackApplication.controller;
 
+import com.swp391.FacilityFeedbackApplication.DTO.FeedbackCountDTO;
 import com.swp391.FacilityFeedbackApplication.model.FacilityFeedback;
 import com.swp391.FacilityFeedbackApplication.service.FacilityFeedbackService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -79,5 +81,10 @@ public class FacilityFeedbackController {
     public ResponseEntity<?> countFeedbackWithFalseStatus(@RequestParam("startDate") String startDate,
                                                          @RequestParam("endDate") String endDate){
         return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.countFeedbackWithFalseStatus(startDate, endDate));
+    }
+    @GetMapping("/report")
+    public ResponseEntity<?> countFeedback(@RequestParam("startDate") String startDate,
+                                           @RequestParam("endDate") String endDate){
+        return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.countFeedback(startDate, endDate));
     }
 }

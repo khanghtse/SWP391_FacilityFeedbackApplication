@@ -1,6 +1,7 @@
 package com.swp391.FacilityFeedbackApplication.service;
 
 import com.swp391.FacilityFeedbackApplication.DTO.FacilityFeedbackDTO;
+import com.swp391.FacilityFeedbackApplication.DTO.FeedbackCountDTO;
 import com.swp391.FacilityFeedbackApplication.model.FacilityFeedback;
 import com.swp391.FacilityFeedbackApplication.repository.FacilityFeedbackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,20 @@ public class FacilityFeedbackService {
 
     public Long countFeedbackWithFalseStatus(String startDate, String endDate){
         return facilityFeedbackRepository.countFeedbackWithFalseStatus(startDate, endDate);
+    }
+
+    public List<FeedbackCountDTO> countFeedback(String startDate, String endDate){
+        List<Object[]> results = facilityFeedbackRepository.countFeedback(startDate, endDate);
+        List<FeedbackCountDTO> dtos = new ArrayList<>();
+
+        for(Object[] result: results){
+            FeedbackCountDTO dto = new FeedbackCountDTO();
+            dto.setTotalFeedback((int) result[0]);
+            dto.setTrueStatusFeedback((int) result[1]);
+            dto.setFalseStatusFeedback((int) result[2]);
+            dtos.add(dto);
+        }
+        return dtos;
     }
 
 
