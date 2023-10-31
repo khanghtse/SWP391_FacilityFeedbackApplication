@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -52,7 +53,8 @@ public class RoomController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateRoom(@PathVariable int id, @RequestBody Room room){
-        if (roomService.isRoomNameDupplicated(room.getName(), room.getCampusId())){
+        Optional<Room> roomFound = roomService.findRoomById(id);
+        if (roomService.isRoomNameDupplicated(room.getName(), roomFound.get().getCampusId())){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Room name is dupplicated");
         }else {
             if (roomService.searchRoomById(id) == null || room == null){

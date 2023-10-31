@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
-    @Service
+@Service
     public class RoomService {
         @Autowired
         private RoomRepository roomRepository;
@@ -24,6 +25,10 @@ import java.util.List;
                 roomDTOList.add(roomDTO);
             }
             return roomDTOList;
+        }
+
+        public Optional<Room> findRoomById(int id){
+            return roomRepository.findById(id);
         }
 
         public List<Room> getAllRoom(){
