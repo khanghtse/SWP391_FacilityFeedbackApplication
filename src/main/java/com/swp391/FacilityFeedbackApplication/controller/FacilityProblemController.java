@@ -41,11 +41,15 @@ public class FacilityProblemController{
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateProblem(@PathVariable int id, @RequestBody FacilityProblem facilityProblem){
-        if (facilityProblemService.findProblemById(id) == null || facilityProblem == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility problem not found");
+        if (facilityProblemService.isProblemNameDuplicated(facilityProblem.getProblemName())){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Problem is duplicated!!!");
         }else{
-            if (facilityProblemService.editProblem(id, facilityProblem)){
-                return ResponseEntity.status(HttpStatus.OK).body("Updated successfully");
+            if (facilityProblemService.findProblemById(id) == null || facilityProblem == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility problem not found");
+            }else{
+                if (facilityProblemService.editProblem(id, facilityProblem)){
+                    return ResponseEntity.status(HttpStatus.OK).body("Updated successfully");
+                }
             }
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Update problem failed");

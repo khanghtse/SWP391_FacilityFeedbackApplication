@@ -44,11 +44,15 @@ public class FacilityTypeController {
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateFacilityType(@RequestBody FacilityType facilityType, @PathVariable int id){
-        if (facilityTypeService.findFacilityTypeById(id) == null || facilityType == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility type not found");
-        } else {
-            if (facilityTypeService.editFacilityType(id, facilityType)){
-                return ResponseEntity.status(HttpStatus.OK).body("Updated successfully");
+        if (facilityTypeService.isFacilityTypeDuplicated(facilityType.getName())){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility type name duplicated!!!");
+        }else{
+            if (facilityTypeService.findFacilityTypeById(id) == null || facilityType == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility type not found");
+            } else {
+                if (facilityTypeService.editFacilityType(id, facilityType)){
+                    return ResponseEntity.status(HttpStatus.OK).body("Updated successfully");
+                }
             }
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Update failed !!!!");

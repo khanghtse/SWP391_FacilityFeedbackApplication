@@ -30,13 +30,18 @@ import java.util.List;
 
         @PutMapping("/update/{id}")
         public ResponseEntity<?> updateFacility(@PathVariable int id, @RequestBody Facility facility){
-            if (facilityService.findFacilityById(id) == null || facility == null){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility not found");
+            if (facilityService.isFacilityNameDuplicated(facility.getName())){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility name is duplicated !!");
             }else {
-                if (facilityService.editFacility(facility, id)){
-                    return ResponseEntity.status(HttpStatus.OK).body("Updated successfully!!");
+                if (facilityService.findFacilityById(id) == null || facility == null){
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Facility not found");
+                }else {
+                    if (facilityService.editFacility(facility, id)){
+                        return ResponseEntity.status(HttpStatus.OK).body("Updated successfully!!");
+                    }
                 }
             }
+
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Update facility failed!!");
         }
 

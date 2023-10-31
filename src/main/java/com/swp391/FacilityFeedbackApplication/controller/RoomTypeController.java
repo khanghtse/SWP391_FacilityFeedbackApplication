@@ -38,11 +38,15 @@ public class RoomTypeController {
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateRoomType(@RequestBody RoomType roomType, @PathVariable int id){
-        if (roomTypeService.findById(id) == null || roomType == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("RoomType not found!!!!");
-        }else {
-            if (roomTypeService.editRoomType(id, roomType)){
-                return ResponseEntity.status(HttpStatus.OK).body("Update successfully!!!");
+        if (roomTypeService.isRoomTypeDuplicated(roomType.getName())){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("RoomType name is duplicated");
+        }else{
+            if (roomTypeService.findById(id) == null || roomType == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("RoomType not found!!!!");
+            }else {
+                if (roomTypeService.editRoomType(id, roomType)){
+                    return ResponseEntity.status(HttpStatus.OK).body("Update successfully!!!");
+                }
             }
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Update failed !!!");

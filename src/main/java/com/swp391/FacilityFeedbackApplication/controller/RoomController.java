@@ -52,11 +52,15 @@ public class RoomController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateRoom(@PathVariable int id, @RequestBody Room room){
-        if (roomService.searchRoomById(id) == null || room == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Room not found");
-        }else{
-            if (roomService.editRoom(room, id)){
-                return ResponseEntity.status(HttpStatus.OK).body("Updated successfully");
+        if (roomService.isRoomNameDupplicated(room.getName(), room.getCampusId())){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Room name is dupplicated");
+        }else {
+            if (roomService.searchRoomById(id) == null || room == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Room not found");
+            }else{
+                if (roomService.editRoom(room, id)){
+                    return ResponseEntity.status(HttpStatus.OK).body("Updated successfully");
+                }
             }
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Update room failed");
