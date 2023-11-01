@@ -1,5 +1,6 @@
 package com.swp391.FacilityFeedbackApplication.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -11,7 +12,8 @@ public class RepairHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "RepairDate")
-    private String repairDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
+    private Date repairDate;
     @Column(name = "Status")
     private boolean status;
     @Column(name = "Image")
@@ -26,7 +28,7 @@ public class RepairHistory {
     public RepairHistory() {
     }
 
-    public RepairHistory(int id, String repairDate, boolean status, byte[] image, String description, int facilityFeedbackId, int staffId) {
+    public RepairHistory(int id, Date repairDate, boolean status, byte[] image, String description, int facilityFeedbackId, int staffId) {
         this.id = id;
         this.repairDate = repairDate;
         this.status = status;
@@ -44,11 +46,11 @@ public class RepairHistory {
         this.id = id;
     }
 
-    public String getRepairDate() {
+    public Date getRepairDate() {
         return repairDate;
     }
 
-    public void setRepairDate(String repairDate) {
+    public void setRepairDate(Date repairDate) {
         this.repairDate = repairDate;
     }
 

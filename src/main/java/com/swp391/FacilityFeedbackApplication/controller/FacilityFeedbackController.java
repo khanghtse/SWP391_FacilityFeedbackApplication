@@ -36,11 +36,11 @@ public class FacilityFeedbackController {
     ){
         try{
             Date createDate = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             FacilityFeedback facilityFeedback = new FacilityFeedback();
             facilityFeedback.setDesc(description);
             facilityFeedback.setImage(image.getBytes());
-            facilityFeedback.setCreateDate(sdf.format(createDate));
+            facilityFeedback.setCreateDate(createDate);
             facilityFeedback.setStatus(status);
             facilityFeedback.setCampusId(campusId);
             facilityFeedback.setFloorId(floorId);

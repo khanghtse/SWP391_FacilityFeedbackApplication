@@ -1,5 +1,6 @@
 package com.swp391.FacilityFeedbackApplication.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -8,8 +9,8 @@ public class FacilityFeedbackDTO {
     private int id;
     private String description;
     private byte[] image;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private String createDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
+    private Date createDate;
     private boolean status;
     private String campusName;
     private String floorName;
@@ -21,7 +22,7 @@ public class FacilityFeedbackDTO {
     }
 
     public FacilityFeedbackDTO(int id, String description, byte[] image,
-                               String createDate, boolean status, String campusName, String floorName,
+                               Date createDate, boolean status, String campusName, String floorName,
                                String facilityProblemName, String roomName, String facilityName) {
         this.id = id;
         this.description = description;
@@ -67,11 +68,11 @@ public class FacilityFeedbackDTO {
         this.image = image;
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 

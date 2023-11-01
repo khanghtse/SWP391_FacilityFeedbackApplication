@@ -38,9 +38,9 @@ public class RepairHistoryController {
                 return new ResponseEntity<>("This feedback was already finished", HttpStatus.BAD_REQUEST);
             }
             Date repairDate = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             RepairHistory repairHistory = new RepairHistory();
-            repairHistory.setRepairDate(sdf.format(repairDate));
+            repairHistory.setRepairDate(repairDate);
             repairHistory.setStatus(status);
             repairHistory.setImage(image.getBytes());
             repairHistory.setDescription(description);

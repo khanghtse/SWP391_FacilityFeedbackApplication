@@ -1,10 +1,14 @@
 package com.swp391.FacilityFeedbackApplication.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Date;
 
 public class RepairHistoryDTO {
     private int id;
-    private String repairDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
+    private Date repairDate;
 
     private boolean status;
     private byte[] image;
@@ -15,7 +19,7 @@ public class RepairHistoryDTO {
     public RepairHistoryDTO() {
     }
 
-    public RepairHistoryDTO(int id, String repairDate, boolean status, byte[] image, String description, int facilityFeedbackId, String staffName) {
+    public RepairHistoryDTO(int id, Date repairDate, boolean status, byte[] image, String description, int facilityFeedbackId, String staffName) {
         this.id = id;
         this.repairDate = repairDate;
         this.status = status;
@@ -33,11 +37,11 @@ public class RepairHistoryDTO {
         this.id = id;
     }
 
-    public String getRepairDate() {
+    public Date getRepairDate() {
         return repairDate;
     }
 
-    public void setRepairDate(String repairDate) {
+    public void setRepairDate(Date repairDate) {
         this.repairDate = repairDate;
     }
 

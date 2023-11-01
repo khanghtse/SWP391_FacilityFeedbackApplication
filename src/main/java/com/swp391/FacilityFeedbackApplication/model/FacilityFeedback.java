@@ -1,5 +1,6 @@
 package com.swp391.FacilityFeedbackApplication.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,9 +16,10 @@ public class FacilityFeedback {
     private String desc;
     @Column(name = "Image")
     private byte[] image;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+
     @Column(name = "CreateDate")
-    private String createDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
+    private Date createDate;
     @Column(name = "Status")
     private boolean status;
     @Column(name = "CampusId")
@@ -35,7 +37,7 @@ public class FacilityFeedback {
     public FacilityFeedback() {
     }
 
-    public FacilityFeedback(int id, String desc, byte[] image, String createDate, boolean status,
+    public FacilityFeedback(int id, String desc, byte[] image, Date createDate, boolean status,
                             int campusId, int floorId, int facilityProblemId, int roomId,
                             int facilityId) {
         this.id = id;
@@ -98,11 +100,11 @@ public class FacilityFeedback {
         this.facilityId = facilityId;
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
