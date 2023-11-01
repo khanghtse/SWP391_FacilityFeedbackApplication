@@ -16,7 +16,7 @@ public interface RepairHistoryRepository extends JpaRepository<RepairHistory, In
             "FROM [dbo].[RepairHistory] rp\n" +
             "INNER JOIN [dbo].[FacilityFeedback] FF ON rp.FacilityFeedbackId = FF.Id\n" +
             "INNER JOIN [dbo].[Staff] s ON rp.StaffId = s.Id\n" +
-            "WHERE FF.CampusId = :campusId", nativeQuery = true)
+            "WHERE FF.CampusId = :campusId ORDER BY rp.RepairDate DESC", nativeQuery = true)
     @Modifying
     @Transactional
     List<Object[]> getAllByCampus(int campusId);
