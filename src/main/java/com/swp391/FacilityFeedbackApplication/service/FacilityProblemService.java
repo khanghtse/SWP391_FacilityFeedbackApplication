@@ -44,8 +44,8 @@ public class FacilityProblemService {
             return dtos;
         }catch (Exception e){
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     public boolean isProblemNameDuplicated(String name){
