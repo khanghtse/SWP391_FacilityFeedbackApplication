@@ -62,17 +62,22 @@ public class FacilityFeedbackService {
 //    }
 
     public List<FeedbackReportDTO> countFeedback(Date startDate, Date endDate, int id){
-        List<Object[]> results = facilityFeedbackRepository.countFeedback(startDate, endDate, id);
-        List<FeedbackReportDTO> dtos = new ArrayList<>();
+        try{
+            List<Object[]> results = facilityFeedbackRepository.countFeedback(startDate, endDate, id);
+            List<FeedbackReportDTO> dtos = new ArrayList<>();
 
-        for(Object[] result: results){
-            FeedbackReportDTO dto = new FeedbackReportDTO();
-            dto.setTotalFeedback((int) result[0]);
-            dto.setTrueStatusFeedback((int) result[1]);
-            dto.setFalseStatusFeedback((int) result[2]);
-            dtos.add(dto);
+            for(Object[] result: results){
+                FeedbackReportDTO dto = new FeedbackReportDTO();
+                dto.setTotalFeedback((int) result[0]);
+                dto.setTrueStatusFeedback((int) result[1]);
+                dto.setFalseStatusFeedback((int) result[2]);
+                dtos.add(dto);
+            }
+            return dtos;
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return dtos;
+        return null;
     }
 
 

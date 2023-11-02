@@ -83,6 +83,11 @@ public class FacilityFeedbackController {
     public ResponseEntity<?> countFeedback(@RequestParam("startDate") Date startDate,
                                            @RequestParam("endDate") Date endDate,
                                            @RequestParam("campusId") int id){
-        return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.countFeedback(startDate, endDate, id));
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(facilityFeedbackService.countFeedback(startDate, endDate, id));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error");
+        }
     }
 }

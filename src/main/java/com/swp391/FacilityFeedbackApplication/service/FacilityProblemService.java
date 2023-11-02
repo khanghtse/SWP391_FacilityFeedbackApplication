@@ -30,32 +30,22 @@ public class FacilityProblemService {
         }
         return feedbackDTOList;
     }
-
-//    public List<FeedbackReportDTO> countFeedback(Date startDate, Date endDate, int id){
-//        List<Object[]> results = facilityFeedbackRepository.countFeedback(startDate, endDate, id);
-//        List<FeedbackReportDTO> dtos = new ArrayList<>();
-//
-//        for(Object[] result: results){
-//            FeedbackReportDTO dto = new FeedbackReportDTO();
-//            dto.setTotalFeedback((int) result[0]);
-//            dto.setTrueStatusFeedback((int) result[1]);
-//            dto.setFalseStatusFeedback((int) result[2]);
-//            dtos.add(dto);
-//        }
-//        return dtos;
-//    }
-
     public List<ProblemReportDTO> countProblem(Date startDate,Date endDate, int id){
-        List<Object[]> results = facilityProblemRepository.countProblem(startDate, endDate, id);
-        List<ProblemReportDTO> dtos = new ArrayList<>();
+        try{
+            List<Object[]> results = facilityProblemRepository.countProblem(startDate, endDate, id);
+            List<ProblemReportDTO> dtos = new ArrayList<>();
 
-        for (Object[] result: results){
-            ProblemReportDTO dto = new ProblemReportDTO();
-            dto.setFeedbackCount((int) result[0]);
-            dto.setProblemName((String) result[1]);
-            dtos.add(dto);
+            for (Object[] result: results){
+                ProblemReportDTO dto = new ProblemReportDTO();
+                dto.setFeedbackCount((int) result[0]);
+                dto.setProblemName((String) result[1]);
+                dtos.add(dto);
+            }
+            return dtos;
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return dtos;
+        return null;
     }
 
     public boolean isProblemNameDuplicated(String name){
