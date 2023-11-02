@@ -23,6 +23,10 @@ public class FacilityTypeController {
     public List<FacilityType> getAllFacilityType(){
         return facilityTypeService.getFacilityType();
     }
+    @GetMapping("/view-all")
+    public ResponseEntity<?> viewAllFacilityType(){
+        return ResponseEntity.status(HttpStatus.OK).body(facilityTypeService.viewAllFacilityType());
+    }
 
 //    @GetMapping("/find/{id}")
 //    public ResponseEntity<?> find(@PathVariable int id){

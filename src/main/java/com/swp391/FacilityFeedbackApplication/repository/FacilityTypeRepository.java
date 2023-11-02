@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface FacilityTypeRepository extends JpaRepository<FacilityType, Integer> {
     FacilityType findFacilityTypeById(int id);
@@ -26,4 +28,9 @@ public interface FacilityTypeRepository extends JpaRepository<FacilityType, Inte
     @Modifying
     @Transactional
     Integer deleteFacilityTypeByStatus(@Param("id") int id);
+    @Query(value = "SELECT ft.[Id], ft.[FacilityTypeName], ft.[Status], rt.RoomTypeName\n" +
+            "FROM [dbo].[FacilityType] ft\n" +
+            "INNER JOIN [dbo].[RoomType] rt ON rt.Id = ft.RoomTypeId", nativeQuery = true)
+    @Transactional
+    List<Object[]> viewAllRoom();
 }

@@ -38,20 +38,20 @@ public interface FacilityFeedbackRepository extends JpaRepository<FacilityFeedba
     List<Object[]> getAllFeedbackById(int id);
 
     FacilityFeedback findFacilityFeedbackById(int id);
-    @Query(value = "SELECT COUNT(*) AS TotalFeedback\n" +
-            "FROM [dbo].[FacilityFeedback]\n" +
-            "WHERE createDate BETWEEN :startDate AND :endDate", nativeQuery = true)
-    Long countFeedbackInDateRange(@Param("startDate")String startDate, @Param("endDate") String endDate);
-
-    @Query(value = "SELECT COUNT(*) AS TotalFeedback\n" +
-            "FROM [dbo].[FacilityFeedback]\n" +
-            "WHERE createDate BETWEEN :startDate AND :endDate AND [Status] = 'true'", nativeQuery = true)
-    Long countFeedbackWithTrueStatus(@Param("startDate")String startDate, @Param("endDate") String endDate);
-
-    @Query(value = "SELECT COUNT(*) AS TotalFeedback\n" +
-            "FROM [dbo].[FacilityFeedback]\n" +
-            "WHERE createDate BETWEEN :startDate AND :endDate AND [Status] = 'false'", nativeQuery = true)
-    Long countFeedbackWithFalseStatus(@Param("startDate")String startDate, @Param("endDate") String endDate);
+//    @Query(value = "SELECT COUNT(*) AS TotalFeedback\n" +
+//            "FROM [dbo].[FacilityFeedback]\n" +
+//            "WHERE createDate BETWEEN :startDate AND :endDate", nativeQuery = true)
+//    Long countFeedbackInDateRange(@Param("startDate")String startDate, @Param("endDate") String endDate);
+//
+//    @Query(value = "SELECT COUNT(*) AS TotalFeedback\n" +
+//            "FROM [dbo].[FacilityFeedback]\n" +
+//            "WHERE createDate BETWEEN :startDate AND :endDate AND [Status] = 'true'", nativeQuery = true)
+//    Long countFeedbackWithTrueStatus(@Param("startDate")String startDate, @Param("endDate") String endDate);
+//
+//    @Query(value = "SELECT COUNT(*) AS TotalFeedback\n" +
+//            "FROM [dbo].[FacilityFeedback]\n" +
+//            "WHERE createDate BETWEEN :startDate AND :endDate AND [Status] = 'false'", nativeQuery = true)
+//    Long countFeedbackWithFalseStatus(@Param("startDate")String startDate, @Param("endDate") String endDate);
     @Query(value = "SELECT\n" +
             "    COUNT(*) AS TotalFeedbackCount,\n" +
             "    SUM(CASE WHEN status = 'true' THEN 1 ELSE 0 END) AS TrueStatusCount,\n" +
@@ -62,5 +62,5 @@ public interface FacilityFeedbackRepository extends JpaRepository<FacilityFeedba
             "    createDate BETWEEN :startDate AND :endDate", nativeQuery = true)
     @Modifying
     @Transactional
-    List<Object[]> countFeedback(@Param("startDate") String startDate, @Param("endDate") String endDate);
+    List<Object[]> countFeedback(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }

@@ -50,19 +50,19 @@ public class FacilityFeedbackService {
         return facilityFeedbackRepository.findFacilityFeedbackById(id);
     }
 
-    public Long countFeedbackInDateRange(String startDate, String endDate){
-        return facilityFeedbackRepository.countFeedbackInDateRange(startDate, endDate);
-    }
+//    public Long countFeedbackInDateRange(String startDate, String endDate){
+//        return facilityFeedbackRepository.countFeedbackInDateRange(startDate, endDate);
+//    }
+//
+//    public Long countFeedbackWithTrueStatus(String startDate, String endDate){
+//        return facilityFeedbackRepository.countFeedbackWithTrueStatus(startDate, endDate);
+//    }
+//
+//    public Long countFeedbackWithFalseStatus(String startDate, String endDate){
+//        return facilityFeedbackRepository.countFeedbackWithFalseStatus(startDate, endDate);
+//    }
 
-    public Long countFeedbackWithTrueStatus(String startDate, String endDate){
-        return facilityFeedbackRepository.countFeedbackWithTrueStatus(startDate, endDate);
-    }
-
-    public Long countFeedbackWithFalseStatus(String startDate, String endDate){
-        return facilityFeedbackRepository.countFeedbackWithFalseStatus(startDate, endDate);
-    }
-
-    public List<FeedbackCountDTO> countFeedback(String startDate, String endDate){
+    public List<FeedbackCountDTO> countFeedback(Date startDate, Date endDate){
         List<Object[]> results = facilityFeedbackRepository.countFeedback(startDate, endDate);
         List<FeedbackCountDTO> dtos = new ArrayList<>();
 
