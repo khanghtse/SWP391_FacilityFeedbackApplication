@@ -1,6 +1,5 @@
 package com.swp391.FacilityFeedbackApplication.repository;
 
-import com.swp391.FacilityFeedbackApplication.DTO.FeedbackCountDTO;
 import com.swp391.FacilityFeedbackApplication.model.FacilityFeedback;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -59,8 +58,8 @@ public interface FacilityFeedbackRepository extends JpaRepository<FacilityFeedba
             "FROM\n" +
             "    FacilityFeedback\n" +
             "WHERE\n" +
-            "    createDate BETWEEN :startDate AND :endDate", nativeQuery = true)
+            "    createDate BETWEEN :startDate AND :endDate AND [CampusId] = :campusId", nativeQuery = true)
     @Modifying
     @Transactional
-    List<Object[]> countFeedback(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+    List<Object[]> countFeedback(@Param("startDate") Date startDate, @Param("endDate") Date endDate, @Param("campusId") int id);
 }

@@ -1,6 +1,6 @@
 package com.swp391.FacilityFeedbackApplication.DTO;
 
-public class FeedbackCountDTO {
+public class FeedbackReportDTO {
     private int totalFeedback;
     private int trueStatusFeedback;
     private int falseStatusFeedback;

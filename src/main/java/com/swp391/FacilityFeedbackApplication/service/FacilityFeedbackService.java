@@ -1,7 +1,7 @@
 package com.swp391.FacilityFeedbackApplication.service;
 
 import com.swp391.FacilityFeedbackApplication.DTO.FacilityFeedbackDTO;
-import com.swp391.FacilityFeedbackApplication.DTO.FeedbackCountDTO;
+import com.swp391.FacilityFeedbackApplication.DTO.FeedbackReportDTO;
 import com.swp391.FacilityFeedbackApplication.model.FacilityFeedback;
 import com.swp391.FacilityFeedbackApplication.repository.FacilityFeedbackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FacilityFeedbackService {
@@ -62,12 +61,12 @@ public class FacilityFeedbackService {
 //        return facilityFeedbackRepository.countFeedbackWithFalseStatus(startDate, endDate);
 //    }
 
-    public List<FeedbackCountDTO> countFeedback(Date startDate, Date endDate){
-        List<Object[]> results = facilityFeedbackRepository.countFeedback(startDate, endDate);
-        List<FeedbackCountDTO> dtos = new ArrayList<>();
+    public List<FeedbackReportDTO> countFeedback(Date startDate, Date endDate, int id){
+        List<Object[]> results = facilityFeedbackRepository.countFeedback(startDate, endDate, id);
+        List<FeedbackReportDTO> dtos = new ArrayList<>();
 
         for(Object[] result: results){
-            FeedbackCountDTO dto = new FeedbackCountDTO();
+            FeedbackReportDTO dto = new FeedbackReportDTO();
             dto.setTotalFeedback((int) result[0]);
             dto.setTrueStatusFeedback((int) result[1]);
             dto.setFalseStatusFeedback((int) result[2]);

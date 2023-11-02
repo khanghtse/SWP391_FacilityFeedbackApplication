@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -53,6 +54,12 @@ public class FacilityProblemController{
             }
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Update problem failed");
+    }
+    @GetMapping("/report-problem")
+    public ResponseEntity<?> problemReport(@RequestParam("startDate") Date startDate,
+                                           @RequestParam("endDate") Date endDate,
+                                           @RequestParam("campusId") int id){
+        return ResponseEntity.status(HttpStatus.OK).body(facilityProblemService.countProblem(startDate, endDate, id));
     }
 
 }

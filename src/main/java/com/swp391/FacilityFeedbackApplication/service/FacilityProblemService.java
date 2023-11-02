@@ -1,14 +1,14 @@
 package com.swp391.FacilityFeedbackApplication.service;
 
-import com.swp391.FacilityFeedbackApplication.DTO.FacilityFeedbackDTO;
 import com.swp391.FacilityFeedbackApplication.DTO.FacilityProblemDTO;
-import com.swp391.FacilityFeedbackApplication.model.Campus;
+import com.swp391.FacilityFeedbackApplication.DTO.ProblemReportDTO;
 import com.swp391.FacilityFeedbackApplication.model.FacilityProblem;
 import com.swp391.FacilityFeedbackApplication.repository.FacilityProblemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,6 +29,33 @@ public class FacilityProblemService {
             feedbackDTOList.add(facilityProblemDTO);
         }
         return feedbackDTOList;
+    }
+
+//    public List<FeedbackReportDTO> countFeedback(Date startDate, Date endDate, int id){
+//        List<Object[]> results = facilityFeedbackRepository.countFeedback(startDate, endDate, id);
+//        List<FeedbackReportDTO> dtos = new ArrayList<>();
+//
+//        for(Object[] result: results){
+//            FeedbackReportDTO dto = new FeedbackReportDTO();
+//            dto.setTotalFeedback((int) result[0]);
+//            dto.setTrueStatusFeedback((int) result[1]);
+//            dto.setFalseStatusFeedback((int) result[2]);
+//            dtos.add(dto);
+//        }
+//        return dtos;
+//    }
+
+    public List<ProblemReportDTO> countProblem(Date startDate,Date endDate, int id){
+        List<Object[]> results = facilityProblemRepository.countProblem(startDate, endDate, id);
+        List<ProblemReportDTO> dtos = new ArrayList<>();
+
+        for (Object[] result: results){
+            ProblemReportDTO dto = new ProblemReportDTO();
+            dto.setFeedbackCount((int) result[0]);
+            dto.setProblemName((String) result[1]);
+            dtos.add(dto);
+        }
+        return dtos;
     }
 
     public boolean isProblemNameDuplicated(String name){
