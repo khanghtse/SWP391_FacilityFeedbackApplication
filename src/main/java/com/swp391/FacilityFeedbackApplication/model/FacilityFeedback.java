@@ -32,6 +32,8 @@ public class FacilityFeedback {
     private int roomId;
     @Column(name = "FacilityId")
     private int facilityId;
+    @Column(name = "StaffId")
+    private int staffId;
 
 
     public FacilityFeedback() {
@@ -39,7 +41,7 @@ public class FacilityFeedback {
 
     public FacilityFeedback(int id, String desc, byte[] image, Date createDate, boolean status,
                             int campusId, int floorId, int facilityProblemId, int roomId,
-                            int facilityId) {
+                            int facilityId, int staffId) {
         this.id = id;
         this.desc = desc;
         this.image = image;
@@ -50,6 +52,15 @@ public class FacilityFeedback {
         this.facilityProblemId = facilityProblemId;
         this.roomId = roomId;
         this.facilityId = facilityId;
+        this.staffId = staffId;
+    }
+
+    public int getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(int staffId) {
+        this.staffId = staffId;
     }
 
     public boolean isStatus() {
