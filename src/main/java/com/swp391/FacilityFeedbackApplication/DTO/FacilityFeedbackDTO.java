@@ -17,14 +17,14 @@ public class FacilityFeedbackDTO {
     private String facilityProblemName;
     private String roomName;
     private String facilityName;
-    private String staffName;
+    //private String staffName;
 
     public FacilityFeedbackDTO() {
     }
 
     public FacilityFeedbackDTO(int id, String description, byte[] image,
                                Date createDate, boolean status, String campusName, String floorName,
-                               String facilityProblemName, String roomName, String facilityName, String staffName) {
+                               String facilityProblemName, String roomName, String facilityName) {
         this.id = id;
         this.description = description;
         this.image = image;
@@ -35,16 +35,16 @@ public class FacilityFeedbackDTO {
         this.facilityProblemName = facilityProblemName;
         this.roomName = roomName;
         this.facilityName = facilityName;
-        this.staffName = staffName;
+        //this.staffName = staffName;
     }
 
-    public String getStaffName() {
-        return staffName;
-    }
-
-    public void setStaffName(String staffName) {
-        this.staffName = staffName;
-    }
+//    public String getStaffName() {
+//        return staffName;
+//    }
+//
+//    public void setStaffName(String staffName) {
+//        this.staffName = staffName;
+//    }
 
     public boolean isStatus() {
         return status;
