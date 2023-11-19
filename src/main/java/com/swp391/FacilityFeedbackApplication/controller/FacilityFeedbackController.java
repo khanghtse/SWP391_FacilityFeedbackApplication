@@ -44,6 +44,7 @@ public class FacilityFeedbackController {
             facilityFeedback.setFacilityProblemId(facilityProblemId);
             facilityFeedback.setRoomId(roomId);
             facilityFeedback.setFacilityId(facilityId);
+            facilityFeedback.setStaffId(null);
             FacilityFeedback saveFeedback = facilityFeedbackService.createFeedback(facilityFeedback);
             if(saveFeedback != null){
                 return new ResponseEntity<>("Feedback create successfully", HttpStatus.CREATED);
