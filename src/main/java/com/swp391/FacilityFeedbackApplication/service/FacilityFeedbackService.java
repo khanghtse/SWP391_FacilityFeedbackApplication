@@ -86,6 +86,15 @@ public class FacilityFeedbackService {
         }
     }
 
+    public boolean assignForStaff(FacilityFeedback facilityFeedback, int id){
+        try{
+            return facilityFeedbackRepository.assignForStaff(facilityFeedback.getStaffId(), id) == 1;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 //    public FacilityFeedback view(int id){
 //        return facilityFeedbackRepository.findAllById(id);

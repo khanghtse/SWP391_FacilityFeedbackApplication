@@ -92,4 +92,17 @@ public class FacilityFeedbackController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error");
         }
     }
+
+    @PutMapping("/assign/{id}")
+    public ResponseEntity<?> assignForStaff(@PathVariable("id") int id,
+                                            @org.springframework.web.bind.annotation.RequestBody FacilityFeedback facilityFeedback){
+        if (facilityFeedbackService.getAllFeedbackById(id) == null || facilityFeedback == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Feedback not found");
+        } else {
+            if (facilityFeedbackService.assignForStaff(facilityFeedback, id)){
+                return ResponseEntity.status(HttpStatus.OK).body("Assign successfully");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Assign failed");
+    }
 }
