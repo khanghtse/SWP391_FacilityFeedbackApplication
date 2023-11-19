@@ -65,7 +65,7 @@ public interface FacilityFeedbackRepository extends JpaRepository<FacilityFeedba
     @Transactional
     List<Object[]> countFeedback(@Param("startDate") Date startDate, @Param("endDate") Date endDate, @Param("campusId") int id);
 
-    @Query(name = "UPDATE [dbo].[FacilityFeedback] SET [StaffId] = :staffId WHERE [Id] = :id", nativeQuery = true)
+    @Query(value = "UPDATE [dbo].[FacilityFeedback] SET [StaffId] = :staffId WHERE [Id] = :id", nativeQuery = true)
     @Modifying
     @Transactional
     Integer assignForStaff(@Param("staffId") int staffId, @Param("id") int id);
