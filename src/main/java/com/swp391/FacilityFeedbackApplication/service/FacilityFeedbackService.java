@@ -45,7 +45,7 @@ public class FacilityFeedbackService {
         for (Object[] result: results){
             FacilityFeedbackDTO facilityFeedbackDTO = new FacilityFeedbackDTO((int) result[0], (String) result[1],
                     (byte[]) result[2], (Date) result[3], (boolean) result[4], (String) result[5], (String) result[6], (String) result[7],
-                    (String) result[8],(String) result[9]);
+                    (String) result[8],(String) result[9], (String) result[10]);
             feedbackDTOList.add(facilityFeedbackDTO);
         }
         return feedbackDTOList;
