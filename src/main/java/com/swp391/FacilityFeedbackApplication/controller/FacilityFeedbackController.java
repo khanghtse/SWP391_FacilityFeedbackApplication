@@ -29,7 +29,8 @@ public class FacilityFeedbackController {
             @RequestBody int floorId,
             @RequestBody int facilityProblemId,
             @RequestBody int roomId,
-            @RequestBody int facilityId
+            @RequestBody int facilityId,
+            @RequestBody Integer staffId
     ){
         try{
             Date createDate = new Date();
@@ -44,7 +45,7 @@ public class FacilityFeedbackController {
             facilityFeedback.setFacilityProblemId(facilityProblemId);
             facilityFeedback.setRoomId(roomId);
             facilityFeedback.setFacilityId(facilityId);
-            facilityFeedback.setStaffId(null);
+            facilityFeedback.setStaffId(staffId);
             FacilityFeedback saveFeedback = facilityFeedbackService.createFeedback(facilityFeedback);
             if(saveFeedback != null){
                 return new ResponseEntity<>("Feedback create successfully", HttpStatus.CREATED);

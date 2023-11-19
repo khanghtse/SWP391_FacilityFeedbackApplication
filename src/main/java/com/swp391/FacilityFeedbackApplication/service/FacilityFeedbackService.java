@@ -30,7 +30,13 @@ public class FacilityFeedbackService {
     }
 
     public FacilityFeedback createFeedback(FacilityFeedback facilityFeedback){
-        return facilityFeedbackRepository.save(facilityFeedback);
+        try{
+            return facilityFeedbackRepository.save(facilityFeedback);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
     public List<FacilityFeedbackDTO> getAllFeedbackById(int id){
         List<Object[]> results = facilityFeedbackRepository.getAllFeedbackById(id);

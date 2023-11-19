@@ -2,6 +2,7 @@ package com.swp391.FacilityFeedbackApplication.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -32,7 +33,7 @@ public class FacilityFeedback {
     @Column(name = "FacilityId")
     private int facilityId;
     @Column(name = "StaffId")
-    private int staffId;
+    private Integer staffId;
 
 
     public FacilityFeedback() {
@@ -40,7 +41,7 @@ public class FacilityFeedback {
 
     public FacilityFeedback(int id, String desc, byte[] image, Date createDate, boolean status,
                             int campusId, int floorId, int facilityProblemId, int roomId,
-                            int facilityId, int staffId) {
+                            int facilityId, Integer staffId) {
         this.id = id;
         this.desc = desc;
         this.image = image;
