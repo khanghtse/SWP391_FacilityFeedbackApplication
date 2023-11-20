@@ -79,4 +79,11 @@ public class RepairHistoryController {
     public ResponseEntity<?> viewByCampus(@PathVariable int id){
         return ResponseEntity.status(HttpStatus.OK).body(repairHistoryService.viewRepairHistory(id));
     }
+
+    @GetMapping("/view-repair-history")
+    public ResponseEntity<?> getAllRepairHistory(@RequestParam("campusId") int campusId,
+                                                 @RequestParam("startDate") Date startDate,
+                                                 @RequestParam("endDate") Date endDate){
+        return ResponseEntity.status(HttpStatus.OK).body(repairHistoryService.getAllRepairHistory(campusId, startDate, endDate));
+    }
 }

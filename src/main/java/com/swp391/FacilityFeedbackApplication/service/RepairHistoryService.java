@@ -57,4 +57,16 @@ public class RepairHistoryService {
         }
         return repairHistoryDTOList;
     }
+
+    public List<RepairHistoryDTO> getAllRepairHistory(int id, Date startDate, Date endDate){
+        List<Object[]> results = repairHistoryRepository.getAllRepairHistory(id, startDate, endDate);
+        List<RepairHistoryDTO> repairHistoryDTOList = new ArrayList<>();
+
+        for (Object[] result: results){
+            RepairHistoryDTO repairHistoryDTO = new RepairHistoryDTO((int) result[0], (Date) result[1], (boolean) result[2],
+                    (byte[]) result[3], (String) result[4], (int) result[5], (String) result [6]);
+            repairHistoryDTOList.add(repairHistoryDTO);
+        }
+        return repairHistoryDTOList;
+    }
 }
